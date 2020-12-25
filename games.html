@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>Игры - Cat World Games</title>
+  <link rel="shortcut icon" href="https://sun2-3.userapi.com/LS5KLD4M_s8P4s2goo6XZSIUx2eLzOka4ZqbAg/5NyARrS_nm8.jpg?ava=1" type="image/png">
+  <style>
+  .otstup{
+margin-top: 35px
+}
+  </style>
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 16px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #0c170c;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+   </style>
+   <script>
+  function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+   </script>
+   <style>
+   /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+   </style>
+   <script>
+   var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+   </script>
+   <style>
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+   </style>
+   <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+   </script>
+   <style>
+ button {
+   background: #008EB0; /* Синий цвет фона */
+    color: #fff; /* Белый цвет текста */
+    border: none; /* Убираем рамку */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    margin-bottom: 1rem; /* Отступ снизу */ 
+   }
+   .green { background: #73A353; }
+   .red { background: #C1172C; }
+   .orange { background: #F7941E; }
+   .like{weight:350px;
+height:30px;
+border:1px solid purple;
+background-color:orange;
+outline:none;
+position:obsolute;
+transform: translate(-10%.-10%);
+top:100%;
+left:1%;
+transition: all .4s ease;
+font-size: 20px;
+}
+.name{
+border:6px solid red;
+background-color:beige;
+border-radius: 30px;
+color:darkred;
+width: 1500px;
+font-size: 30px;
+}
+.game{/*дизайн кнопок игр */
+border:6px solid blue;
+border-radius:10px;
+background-color:white;
+color:darkred;
+width: 500px;
+font-size: 30px;
+}
+.ads{/*а тип дизайн кнопки*/
+border:4px solid red;
+border-radius:15px;
+background-color:beige;
+color:black;
+
+button:hover {
+width:150px;
+height: 40 px
+box-shadow:4px 4px crimson;
+font-size: 21px;
+  </style>
+  <style>
+.screen{
+width: 100px;
+height: 100px;
+}
+.screen:hover{
+width: 200px;
+height: 200px;
+}
+</style>
+<style>
+.otstup{
+margin-top: 65px
+}
+</style>
+  </head>
+  <body>
+   <div class="topnav" id="myTopnav">
+  <a href="index.html">Главная</a>
+  <a href="games.html" class="active">Игры</a>
+  <a href="partners.html">Партнёры</a>
+  <a href="videos.html">CatTube</a>
+  <a href="news.html">Новости</a>
+  <a href="audio.html">Аудиозаписи</a>
+  <a href="characters.html">Персонажи игр</a>
+  <a href="chatik.html">Чатик</a>
+  <a href="edit.html">Веб-редактор</a>
+  <a href="contacts.html">Контакты</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+     <i class="fa fa-bars"></i>
+    </a>
+   </div>
+   <body bgcolor= "#232323">
+<p></p>
+<p></p>
+<h1 class="otstup"><font color ="red">Hello Gleb:Forest</font></h1>
+<img src ="https://sun2-3.userapi.com/xR2wy99GBF-HSqayZU2zH5bkxuQpFjRsDwMsog/YjBuSSheHOU.jpg"class = "screen"></img>
+<img src ="https://sun2-3.userapi.com/UQmw0i_Th_delLb9wSu1A3KhQB1JkY6sxMqrAQ/9r4J-j1gPSI.jpg"class = "screen"></img>
+<img src ="https://sun2-3.userapi.com/aplKo2eBHHxlpPZOx4HbsdOHdOD7q3yOXgT63A/zp_QUHEzvlg.jpg"class = "screen"></img>
+<p></p>
+<button class = "game"><a href = "https://yadi.sk/d/hiAgWq_f-AYHaw"><font color ="red">Скачать</font></a></button>
+<p></p>
+<h1><font color ="red">Котомир.ехе</font></h1>
+<p></p>
+<img src = "https://sun2-4.userapi.com/qLQLLPHrmCWZyz31aTvNFQ_lG1_t2mDQm866cg/hsbMdk8v8G4.jpg" class = "screen"></img>
+<img src = "https://sun2-4.userapi.com/kQ9635U7LnR0XCBdEVSFvbn_CXQf796dGrkIKg/1UrxVP-CKoM.jpg"class = "screen"></img>
+<img src = "https://sun2-3.userapi.com/mBw3P5L3evaY8z6WkhlVQFmMOQfqCYzTjcdpdA/Ez9C_FRE_FY.jpg"class = "screen"></img>
+<img src = "https://sun2-3.userapi.com/a6gCKTre8UdtIgyvIGnrjJZaD5q0GUq4Xvfahw/4W5OS34S4Qc.jpg"class = "screen"></img>
+<p></p>
+<button class = "game"><a href = "https://yadi.sk/d/kxukkuIuVmrt0g"><font color ="red">Скачать</a></font></button>
+<p></p>
+<h1><font color ="red">Hello Gleb 2</font></h1>
+<p></p>
+<img src = "https://sun2-4.userapi.com/rJR9iasYzv081dg4qU3dEF99lnlZaIhImr3NGw/_o44lSKXa_k.jpg"class = "screen"></img>
+<img src = "https://sun2-3.userapi.com/vwszLyMXAydlrcyYD8bKo_iGVyn4zO5Q4GhkjA/gRgt_wfoqLY.jpg"class = "screen"></img>
+<p></p>
+<button class = "game"><a href = " https://yadi.sk/d/ZZqFkntoJw-ZPg"><font color = "red">Скачать</font></a></button>
+<p></p>
+<h1><font color ="red">Hello Gleb 3 Grib Klak Klak</font></h1>
+<p></p>
+<img src = "https://sun2-3.userapi.com/ZeVPnbEra_qWd7L6TWIb2PxivamNhHHGQ_gh_w/-Nm7D0LvUFE.jpg"class = "screen"></img>
+<img src = "https://sun2-3.userapi.com/NrbzIytdh69e2YjsPka-IQEohCm2oH7hFHG0jQ/A3q6YmPXrcQ.jpg"class = "screen"></img>
+<img src = "https://sun2-3.userapi.com/Jptf0TbsiMsr5ybsklor-msHj6joUf6IjTm5AQ/5w4l7Yg_co4.jpg" class = "screen"></img>
+<p></p>
+<button class = "game"><a href = " https://yadi.sk/d/I0gOV1Li_xH37g"><font color = "red">Скачать</font></a></button>
+<p></p>
+<button><font color="white"><a href = "game1.html">Играть в КСП кликер</a></font></button>
+  </body>
+</html>

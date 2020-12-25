@@ -1,0 +1,138 @@
+<html>
+<head>
+<link rel="shortcut icon" href="https://sun2-3.userapi.com/LS5KLD4M_s8P4s2goo6XZSIUx2eLzOka4ZqbAg/5NyARrS_nm8.jpg?ava=1" type="image/png">
+<script>
+document.title = "Mobile CatTube App";
+</script>
+<body>
+<div class = "navbar" id = "menu">
+<h4><font color = "yellow">CatTube Mobile-делись  своими видео</font></h4>
+<style>
+.navbar
+{
+background-color:#0d79de;
+height:40px;
+}
+</style>
+<form>
+<textarea id="message" placeholder="Введите название видео" autocomplete="off" class="displaymessage"></textarea>
+<p></p>
+<input type = "text" onautocomplete= "off" class = "displaymessage" id = "decription" placeholder = "Введите описание видео">
+<input type = "text" onautocomplete= "off" class = "displaymessage" id = "videos" placeholder = "ссылка на видео">
+ <input type="button" class="senders" ,="" onclick="return sendVideo();" width="500" height="100" value="опубликовать">
+ </form>
+ <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+<script src = "https://catworldweb.github.io/cattube_database.js">
+</script>
+<script>
+    function sendVideo() {
+	
+       
+        var title  = document.getElementById("message").value ;
+		var description = document.getElementById("description").value;
+		var like = 0;
+		var dislike = 0;
+		var video = document.getElementById("videos").value;
+          if (author != "" && title != "" && video !=""  )
+	{
+        
+        firebase.database().ref("video_list").push().set({
+            "channel": author,
+            "title": title,
+			"title":room,
+			"image":prevue,
+			"icon":icon,
+			"like": like,
+			"dislike": dislike,
+			
+        });
+		
+ document.getElementById("message").value = "";
+      document.getElementById("description").value = "";
+	   document.getElementById("videos").value = "";
+        return false;
+		}
+    }
+	
+</script>
+<style>
+ .text{
+ color: black;
+ }
+ .send
+ {
+ background-color: red;
+ border:5px solid red;
+ border-radius:15px;
+ color:yellow;
+ 
+ }
+ .work
+ {
+  background-color: blue;
+ border:5px solid blue;
+ border-radius:15px;
+ color:yellow;
+ }
+ .canvaschat
+ {
+ background-color:blue;
+ border:10px solid blue;
+ border-radius:15px;
+width:400px;
+ 
+color:yellow;
+ }
+ .displaymessage
+ {
+ border: 1px solid white;
+ border-radius:50px;
+ }
+ .you
+ {
+ background-color:green;
+ border:3px solid green;
+ border-radius:15px;
+ width:400px;
+ 
+color:yellow;
+ 
+ }
+ </style>
+ <div id = "messages" class = "list">
+ <h3 id = "element"></h3>
+ <script>
+ 
+    
+    firebase.database().ref("video_list").on("child_added", function (snapshot) {
+	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
+	     var money = 0;
+		 var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+
+
+        var html = "";
+        
+        
+		if (snapshot.val().sender != myName)
+		{
+		html += "<img src =" + snapshot.val().image+"></img>";
+		html += "<p><video source =" + snapshot.val().video +"></p></video>";
+		html+= "<p><h4>"+ snapshot.val().title + "</h4></p>";
+		html+= "<hr></hr><p><h4>" + snapshot.val().description + "</h4></p>";
+		html+= "<p>лайки:" + snapshot.val().like + " " + "дизлайки:" + snapshot.val().dislike;
+		html+= "</div>";
+         }
+document.getElementById("element").innerHTML = html;
+       });
+	   
+	
+</script>
+

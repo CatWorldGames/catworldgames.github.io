@@ -1,0 +1,100 @@
+<html>
+<head>
+<script data-ad-client="ca-pub-7088445945474705" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<title>CatWorld Статьи-Платформа для написания статей</title>
+</head>
+<body>
+
+<strong><p id ="lenta" onclick = "writes()" class = "title"><font color ="orange">CatWorld</font><font color ="red">Статьи</font></p></strong>
+
+</title>
+<style>
+.title{
+cursor:pointer;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src = "https://catworldweb.github.io/database.js">
+
+ </script>
+<style>
+.display
+{
+
+border:2px solid #d7d7d7;
+border-radius:15px;
+}
+body
+{
+background-color:black;
+}
+
+</style>
+
+</script>
+<span data-text="true"></span>
+
+<style>
+.names
+{
+border:2px solid black;
+border-radius:10px;
+}
+</style>
+<p></p>
+
+<textarea placeholder="напишите текст или вставьте код" class = "display" id = "message"  value = "img src = 'url image' width = '200' height = '200'> </img>"></textarea>
+<ul id = "messages"></ul>
+<p onclick = "return Publish();" >опубликовать</p>
+<script>
+function Publish()
+{
+var titel = document.getElementById("title").value;
+var name = document.getElementById("nick").value;
+var message = document.getElementById("message").value;
+          if (name != "" && message != "" && titel != "")
+	{
+        
+        firebase.database().ref("posts").push().set({
+            "author": name,
+            "post": message,
+			"title":titel,
+        });
+		
+ document.getElementById("message").value = "";
+   document.getElementById("nick").value = "";
+document.getElementById("title").value = "";   
+        return false;
+		}
+    }
+
+	</script>\
+	<script src = "https://catworldweb.github.io/config.js">
+	</script>
+	<script>
+	firebase.database().ref("posts").on("child_added", function (snapshot) {
+	
+	     
+        var html = "";
+        
+        html +=
+        html += "<li id='message-" + snapshot.key + "' class= 'canvaschat' onclick = 'write()'>";
+       
+        
+        html += snapshot.val().author + ": " + snapshot.val().post;
+        html += "</li>";
+ 
+		console.log (snapshot.val().author + ":" + snapshot.val().post);
+
+        document.getElementById("messages").innerHTML += html;
+		
+    });
+	function write()
+	LocalStorage.setItem("main",snapshot.val().title);
+	LocalStorage.setItem("user",snapshot.val().author);
+	LocalStorage.setItem("text",snapshot.val().post);
+	document.location.href ="read.html";
+	</script>

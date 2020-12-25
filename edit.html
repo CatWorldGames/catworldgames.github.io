@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HTML Редактор-Cat-World Games</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+   <style>._3emE9--dark-theme .-S-tR--ff-downloader{background:rgba(30,30,30,.93);border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#fff}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{background:#3d4b52}._3emE9--dark-theme .-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#131415}._3emE9--dark-theme .-S-tR--ff-downloader ._10vpG--footer{background:rgba(30,30,30,.93)}._2mDEx--white-theme .-S-tR--ff-downloader{background:#fff;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);color:#314c75}._2mDEx--white-theme .-S-tR--ff-downloader ._6_Mtt--header{font-weight:700}._2mDEx--white-theme .-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{border:0;color:rgba(0,0,0,.88)}._2mDEx--white-theme .-S-tR--ff-downloader ._10vpG--footer{background:#fff}.-S-tR--ff-downloader{display:block;overflow:hidden;position:fixed;bottom:20px;right:7.1%;width:330px;height:180px;background:rgba(30,30,30,.93);border-radius:2px;color:#fff;z-index:99999999;border:1px solid rgba(82,82,82,.54);box-shadow:0 4px 7px rgba(30,30,30,.55);transition:.5s}.-S-tR--ff-downloader._3M7UQ--minimize{height:62px}.-S-tR--ff-downloader._3M7UQ--minimize .nxuu4--file-info,.-S-tR--ff-downloader._3M7UQ--minimize ._6_Mtt--header{display:none}.-S-tR--ff-downloader ._6_Mtt--header{padding:10px;font-size:17px;font-family:sans-serif}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn{float:right;background:#f1ecec;height:20px;width:20px;text-align:center;padding:2px;margin-top:-10px;cursor:pointer}.-S-tR--ff-downloader ._6_Mtt--header ._2VdJW--minimize-btn:hover{background:#e2dede}.-S-tR--ff-downloader ._13XQ2--error{color:red;padding:10px;font-size:12px;line-height:19px}.-S-tR--ff-downloader ._2dFLA--container{position:relative;height:100%}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info{padding:6px 15px 0;font-family:sans-serif}.-S-tR--ff-downloader ._2dFLA--container .nxuu4--file-info div{margin-bottom:5px;width:100%;overflow:hidden}.-S-tR--ff-downloader ._2dFLA--container ._2bWNS--notice{margin-top:21px;font-size:11px}.-S-tR--ff-downloader ._10vpG--footer{width:100%;bottom:0;position:absolute;font-weight:700}.-S-tR--ff-downloader ._10vpG--footer ._2V73d--loader{-webkit-animation:n0BD1--rotation 3.5s linear forwards;animation:n0BD1--rotation 3.5s linear forwards;position:absolute;top:-120px;left:calc(50% - 35px);border-radius:50%;border:5px solid #fff;border-top-color:#a29bfe;height:70px;width:70px;display:flex;justify-content:center;align-items:center}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar{width:100%;height:18px;background:#dfe6e9;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._24wjw--loading-bar ._1FVu9--progress-bar{height:100%;background:#8bc34a;border-radius:5px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status{margin-top:10px}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1XilH--state{float:left;font-size:.9em;letter-spacing:1pt;text-transform:uppercase;width:100px;height:20px;position:relative}.-S-tR--ff-downloader ._10vpG--footer ._2KztS--status ._1jiaj--percentage{float:right}</style>
+ </head>
+ <body  bgcolor="#232323">
+  <div class="topnav" id="myTopnav">
+  <a href="index.html">Главная</a>
+  <a href="games.html">Игры</a>
+  <a href="partners.html">Партнёры</a>
+  <a href="videos.html">CatTube</a>
+  <a href="news.html">Новости</a>
+  <a href="audio.html">Аудиозаписи</a>
+  <a href="characters.html">Персонажи игр</a>
+  <a href="chatik.html">Чатик</a>
+  <a href="edit.html" class="active">Веб-редактор</a>
+  <a href="contacts.html">Контакты</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+     <i class="fa fa-bars"></i>
+    </a>
+   </div>
+</script>
+<div class="outer">
+<div class="up">
+<div class="left">
+<p>HTML</p>
+<font color="orange"></font><div class="edit" id="html" contenteditable="true" onkeyup="preview()"><font color="orange"></font></div>
+</div>
+<div class="right">
+<div class="upcss">
+<p>CSS</p>
+<div class="edit" id="css" contenteditable="true" onkeyup="preview()"></div>
+</div>
+<div class="downjs">
+<p>JavaScript</p>
+<div class="edit" id="js" contenteditable="true" onkeyup="preview()"></div>
+</div>
+</div>
+</div>
+<div class="down">
+<p></p>
+<center>
+<h4>Результат
+</h4></center>
+<iframe id="pre" height="500px" src="./HTML Редактор-Cat-World Games_files/saved_resource.html"></iframe>
+</div>
+</div>
+<style>
+body {
+margin:0;
+padding:0;
+font-family:sans-serif;
+
+}
+.send{
+background-color:white;
+border:3px solid black;
+border-radius:10px;
+width: 1500px;
+colr:red;
+}
+
+p{
+font-weight:bolder;
+font-size:10px;
+height:10px;
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+background-color:black;
+position:relative;
+top:-10px;
+}
+
+.outer{
+position:fixed;
+width:100%;
+height:100%;
+}
+
+.down, .up{
+height:49.7%;
+border:1px solid gray;
+border-radius:10px;
+width:100%;
+}
+
+.up{
+display:flex;
+}
+
+.left, .right{
+margin-top:55px;
+height:90%;
+border:1px solid gray;
+border-radius:10px;
+width:49.5%;
+}
+
+.downjs, .upcss{
+height:49.5%;
+border:1px solid gray;
+border-radius:10px;
+width:100%;
+}
+
+#pre{
+width:100%;
+height:calc(100% - 10px);
+border:6px solid black;
+border-radius:10px;
+overflow:auto;
+position:relative;
+top:-20px;
+}
+
+.edit{
+width:100%;
+height:90%
+position:fixed;
+top:5px;
+outline:none;
+overflow:auto;
+}
+</style>
+<style>
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 16px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #0c170c;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+   </style>
+   <script>
+  function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</style>
+<script>
+function preview(){
+
+var content = "";
+
+content +="<style>" + document.getElementById('css').innerText + "<\/style>";
+
+content += "<script>" + document.getElementById('js').innerText + "<\/script>";
+
+content += "<body>" + document.getElementById('html').innerText + "<\/body>";
+
+document.getElementById('pre').src= "data:text/html; charset=UTF-8, <html>" + content + "<\/html>";
+document.title = document.getElementById('html').innerText;
+document.getElementById('title').value = document.getElementById('html').innerText;
+}
+</script>
+</body
+</html>
+ </body>
+</html>
