@@ -391,7 +391,7 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
         var html = "";
         //теги основания комментария
         
-                html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
+                html += "<p><div id='message-" + snapshot.key + "' class= 'messages'>";
         //вывод комментария
         
         html += snapshot.val().user + ":Ваш комментарий: " + snapshot.val().commentariy;
