@@ -383,7 +383,7 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
  			
  
  </form>
- <ul id = "messages"></ul>
+
  <script>
     
     firebase.database().ref("comment").on("child_added", function (snapshot) {
@@ -391,11 +391,11 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
         var html = "";
         
         
-        html += "<p id='message-" + snapshot.key + "' class= 'comment'>";
+        html += "<div class ='messages'id ='messages'><p id='message-" + snapshot.key + "' class= 'comment'>";
         
         
         html += snapshot.val().user + ":Ваш комментарий: " + snapshot.val().commentariy;
-        html += "</p>";
+        html += "</div></p>";
 		
 		
 		if (snapshot.val().user == name) {
@@ -416,6 +416,15 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
 </script>
 
 <style>
+.messages
+{
+background-color:white;
+border:1px;
+border-radius:19px;
+overflow:scroll;
+width:500;
+height:800;
+}
 .likes
 {
 backgound-image:url(https://avatars.mds.yandex.net/get-zen_doc/169683/pub_5c03ad888fcf080452322db3_5c03c7f1f8100903fca38517/scale_1200);
