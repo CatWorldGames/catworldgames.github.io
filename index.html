@@ -383,7 +383,7 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
  			
  
  </form>
-
+<ul id ="messages"></ul>
  <script>
     
     firebase.database().ref("comment").on("child_added", function (snapshot) {
@@ -391,7 +391,7 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
         var html = "";
         
         
-        html += "<div class ='messages'id ='messages'><p id='message-" + snapshot.key + "' class= 'comment'>";
+        html += "<div class ='messages'><p id='message-" + snapshot.key + "' class= 'comment'>";
         
         
         html += snapshot.val().user + ":Ваш комментарий: " + snapshot.val().commentariy;
