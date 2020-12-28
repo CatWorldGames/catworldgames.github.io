@@ -391,7 +391,7 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
         var html = "";
         
         
-        html += "<div class ='messages'><p id='message-" + snapshot.key + "' class= 'comment'>";
+        html += "<div class ='messages'><p id='message-" + snapshot.key + "'";
         
         
         html += snapshot.val().user + ":Ваш комментарий: " + snapshot.val().commentariy;
@@ -422,8 +422,8 @@ background-color:white;
 border:1px;
 border-radius:19px;
 overflow:scroll;
-width:500;
-height:800;
+width:200;
+height:200;
 }
 .likes
 {
