@@ -389,10 +389,10 @@ VK.Widgets.Like("vk_like", {type: "button", height: 24});
     firebase.database().ref("comment").on("child_added", function (snapshot) {
 	
         var html = "";
+        //теги основания комментария
         
-        
-        html += "<div class ='messages'><p id='message-" + snapshot.key + "'class='displaymessage'>";
-        
+                html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
+        //вывод комментария
         
         html += snapshot.val().user + ":Ваш комментарий: " + snapshot.val().commentariy;
         html += "</div></p>";
@@ -422,8 +422,8 @@ background-color:white;
 border:1px;
 border-radius:19px;
 overflow:scroll;
-width:200;
-height:200;
+width:500;
+height:500;
 }
 .likes
 {
@@ -469,7 +469,7 @@ firebase.database().ref("comment").on("child_removed", function (snapshot) {
  border:1px solid gray;
  width:600px;
  background-color:#181818;
- color:yellow;
+ color:black;
  border-radius:13px;
  }
  .displaymessage
