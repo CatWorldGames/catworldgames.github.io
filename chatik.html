@@ -91,7 +91,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-<script src="https://catworldweb.github.io/database.js">
+<script src="https://catworldgames.github.io/database.js">
 
  
  
@@ -202,10 +202,7 @@ border-radius: 100px;
     firebase.database().ref(room).on("child_added", function (snapshot) {
 	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
 	     var money = 0;
-		 var d = new Date();
-    var hours = d.getHours();
-    var mins = d.getMinutes();
-    var secs = d.getSeconds();
+		 
 
 
         var html = "";
