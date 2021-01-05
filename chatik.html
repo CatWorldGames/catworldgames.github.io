@@ -125,12 +125,12 @@
 		var lenghts = length - limit;
 		var nickl = myName.length;
 		var resultnick = nickl - limit;
-		if (myName == "" && message == "" || myName.length >300 || message.length > 300) 
+		if (myName == "" && message == "" || myName.length >400 || message.length > 400) 
 		{
 		
 		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
+          if (myName != "" && message != "" && myName.length < 400 && message.length < 400)
 	{
         
         firebase.database().ref(room).push().set({
