@@ -123,10 +123,12 @@
 		var limit = 300;
 		var length = message.length;
 		var lenghts = length - limit;
+		var nickl = myName.length;
+		var resultnick = nickl - limit;
 		if (myName == "" && message == "" || myName.length >300 || message.length > 300) 
 		{
 		
-		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно:" + lenghts);
+		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
 		}
           if (myName != "" && message != "" || myName.length < 300 || message.length < 300)
 	{
