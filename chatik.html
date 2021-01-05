@@ -120,15 +120,23 @@
 	 
       
         var message = document.getElementById("message").value;
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300) 
+		{
 		
-          if (myName != "" && message != "" )
+		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно:" + lenghts);
+		}
+          if (myName != "" && message != "" || myName.length < 300 || message.length < 300)
 	{
         
         firebase.database().ref(room).push().set({
             "sender": myName,
             "message": message,
 			"rooms":room,
-        });
+        })
+		
 		
  document.getElementById("message").value = "";
       
@@ -186,7 +194,7 @@ border-radius: 100px;
  				
  
  
- <ul id="messages"></ul>
+ <ul id = "messages"></ul>
  <script>
     
     firebase.database().ref(room).on("child_added", function (snapshot) {
