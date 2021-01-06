@@ -204,11 +204,18 @@ document.getElementById("message").value = "<a href = 'ссылка'>текст 
 border:3px solid white;
 border-radius: 100px;
  }
+ .complaint
+ {
+ color:yellow:
+ border:1px solid white;
+ border-radius:18px;
+ background-color:white;
  </style>
  
  				
  <noscript>
- <img src = "https://avatars.mds.yandex.net/get-zen_doc/1906877/pub_5df396f1d4f07a00ad68e713_5df641c098930900b68cbf76/scale_1200" width ="500" height = "500"></img><br>
+ <br>
+ <img src = "https://avatars.mds.yandex.net/get-zen_doc/1906877/pub_5df396f1d4f07a00ad68e713_5df641c098930900b68cbf76/scale_1200" width ="200" height = "200"></img><br>
  <font color = "yellow"><h4>Упс... наш сайт не может работать без JS</h4></font>
  </noscript>
  
@@ -238,7 +245,7 @@ border-radius: 100px;
        
         
         html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
-        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128'>пожаловаться на сообщение</a>";
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
  if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
             html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
