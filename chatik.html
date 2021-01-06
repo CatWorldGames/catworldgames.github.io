@@ -206,7 +206,7 @@ border-radius: 100px;
  }
  .complaint
  {
- color:yellow;
+ color:black;
  border:1px solid white;
  border-radius:18px;
  background-color:white;
@@ -237,7 +237,7 @@ border-radius: 100px;
        
         
         html += snapshot.val().sender + ": " + snapshot.val().message + " " + hours+":"+mins+":"+secs ;
-        html += "</p></li>";
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
 		if (snapshot.val().sender == myName)
 		{
