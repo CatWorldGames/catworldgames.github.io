@@ -13,7 +13,4 @@ var firebaseConfig = {
    
    var myName = prompt("Введите свое имя");
   var room = prompt("Введите название комнаты");
-  var d = new Date();
-    var hours = d.getHours();
-    var mins = d.getMinutes();
-    var secs = d.getSeconds();
+  
