@@ -1,4 +1,13 @@
 <html><head>
+<script>
+function update()
+{
+var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+}
+</script>
  <script src="https://www.googletagservices.com/activeview/js/current/osd.js?cb=%2Fr20100101"></script><script src="https://partner.googleadservices.com/gampad/cookie.js?domain=catworldweb.github.io&amp;callback=_gfp_s_&amp;client=ca-pub-7088445945474705"></script><script src="https://pagead2.googlesyndication.com/pagead/js/r20201112/r20190131/show_ads_impl.js" id="google_shimpl"></script><script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
  <script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
  <link rel="shortcut icon" href="https://sun2-3.userapi.com/LS5KLD4M_s8P4s2goo6XZSIUx2eLzOka4ZqbAg/5NyARrS_nm8.jpg?ava=1" type="image/png">
@@ -124,19 +133,23 @@
 		var length = message.length;
 		var lenghts = length - limit;
 		var nickl = myName.length;
+		update();
 		var resultnick = nickl - limit;
-		if (myName == "" && message == "" || myName.length >400 || message.length > 400) 
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300) 
 		{
 		
 		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
 		}
-          if (myName != "" && message != "" && myName.length < 400 && message.length < 400)
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
 	{
         
         firebase.database().ref(room).push().set({
             "sender": myName,
             "message": message,
 			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs;
         })
 		
 		
@@ -194,7 +207,10 @@ border-radius: 100px;
  </style>
  
  				
- 
+ <noscript>
+ <img src = "https://avatars.mds.yandex.net/get-zen_doc/1906877/pub_5df396f1d4f07a00ad68e713_5df641c098930900b68cbf76/scale_1200" width ="500" height = "500"></img><br>
+ <font color = "yellow"><h4>Упс... наш сайт не может работать без JS</h4></font>
+ </noscript>
  
  <ul id = "messages"></ul>
  <script>
@@ -221,8 +237,8 @@ border-radius: 100px;
 		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
        
         
-        html += snapshot.val().sender + ": " + snapshot.val().message + " " + hours+":"+mins+":"+secs ;
-        html += "</p></li>";
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128'>пожаловаться на сообщение</a>";
 		}
  if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
             html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
