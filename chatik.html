@@ -129,12 +129,7 @@ $(document).keypress(function (e) {
   <script>
   document.getElementById("title").innerHTML = room;
   </script>
-  <script>
-  
 
-
-
-  </script>
 
 
   <script>
@@ -166,7 +161,7 @@ $(document).keypress(function (e) {
 		
 		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && kapcha <10 || )
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
 	{
         
         firebase.database().ref(room).push().set({
