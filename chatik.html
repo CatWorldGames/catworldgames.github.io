@@ -135,6 +135,8 @@ $(document).keypress(function (e) {
 
 
   </script>
+
+
   <script>
     function sendMessage() {
 	 
@@ -144,18 +146,28 @@ $(document).keypress(function (e) {
 		var length = message.length;
 		var lenghts = length - limit;
 		var nickl = myName.length;
+		var
 		update();
 		var resultnick = nickl - limit;
 		var d = new Date();
     var hours = d.getHours();
     var mins = d.getMinutes();
     var secs = d.getSeconds();
-		if (myName == "" && message == "" || myName.length >300 || message.length > 300) 
+	
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		document.getElementById("send").style.display:none;
+		doument.getElementById("message").style.display:none;
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
 		{
 		
 		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && kapcha <10 || )
 	{
         
         firebase.database().ref(room).push().set({
@@ -192,19 +204,19 @@ cursor:pointer;
 <script>
 function fon()
 {
-document.getElementById("message").value = "<style> body{background-image:url(ссылка на изображение);}</style>";
+document.getElementById("message").value =  document.getElementById("message").value +"<style> body{background-image:url(ссылка на изображение);}</style>";
 }
 </script>
 <script>
 function image()
 {
-document.getElementById("message").value = "<img src = 'ссылка на изображение'width = '100' height = '100' ></img>";
+document.getElementById("message").value = document.getElementById("message").value+"<img src = 'ссылка на изображение'width = '100' height = '100' ></img>";
 }
 </script>
 <script>
 function kapets()
 {
-document.getElementById("message").value = "<a href = 'ссылка'>текст ссылки</a>";
+document.getElementById("message").value = document.getElementById("message").value +"<a href = 'ссылка'>текст ссылки</a>";
 }
 </script>
 <a href="plagin.html"><font size="4px"><font color="blue">Установить чат на свой сайт</font></font></a>
