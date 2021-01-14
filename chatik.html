@@ -135,7 +135,9 @@ $(document).keypress(function (e) {
   <script>
     function sendMessage() {
 	 
-      
+       let base = {
+	   
+	   }
         var message = document.getElementById("message").value;
 		var limit = 300;
 		var length = message.length;
@@ -169,7 +171,8 @@ $(document).keypress(function (e) {
 		message = "сообщение удалено<br> причина: комната содержит слово гача лайф";
 		
 		}
-		
+		 
+
           if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
 	{
         
