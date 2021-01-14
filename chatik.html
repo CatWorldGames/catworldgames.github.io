@@ -166,10 +166,11 @@ $(document).keypress(function (e) {
 		
 		
 		alert ("этот сайт не приветствует гача лайф!");
+		message = "сообщение удалено<br> причина: комната содержит слово гача лайф";
 		
 		}
 		
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+" && room.indexOf("гача лайф")<-1 && room.indexOf("Gacha Life")<-1 &&room.indexOf("Гача лайф")<-1 &&room.indexOf("гача")<-1)
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
 	{
         
         firebase.database().ref(room).push().set({
