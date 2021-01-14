@@ -141,7 +141,7 @@ $(document).keypress(function (e) {
 		var length = message.length;
 		var lenghts = length - limit;
 		var nickl = myName.length;
-		
+		var sticker = 0;
 		var resultnick = nickl - limit;
 		var d = new Date();
     var hours = d.getHours();
@@ -151,17 +151,25 @@ $(document).keypress(function (e) {
 	    if (hours > 0 && hours < 5 )
 		{
 		var close = "";
-		document.getElementById("send").style.display = none;
-		doument.getElementById("message").style.display = none;
+		
 		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
 		}
 		
-		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300 ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
+		if (room =='гача лайф' || room =='gacha life' || room.indexOf("гача лайф")>-1 )
 		{
 		
-		alert("отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick);
+		
+		alert ("этот сайт не приветствует гача лайф!");
+		
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
+		
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+" && room.indexOf("гача лайф")<-1 && room.indexOf("Gacha Life")<-1 &&room.indexOf("Гача лайф")<-1 &&room.indexOf("гача")<-1)
 	{
         
         firebase.database().ref(room).push().set({
@@ -171,6 +179,7 @@ $(document).keypress(function (e) {
 			"minute":mins,
 			"hours":hours,
 			"seconds":secs,
+			"sticker_id":sticker,
         })
 		
 		
@@ -243,12 +252,63 @@ border-radius: 100px;
  <ul id = "messages"></ul>
  <script src="js/jquery-2.2.3.min.js"></script>
  <script>
+    function SendStickerOne() {
+	 
+      
+        var message = '<img onclick = "SendSticker()" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&token=03662da7-bd75-41ff-b387-6b8369ca367f" width = "100" height = "100"> </img>';
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		var nickl = myName.length;
+		
+		var resultnick = nickl - limit;
+		var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+	var sticker = 1;
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		document.getElementById("send").style.display = none;
+		doument.getElementById("message").style.display = none;
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
+	{
+        
+        firebase.database().ref(room).push().set({
+            "sender": myName,
+            "message": message,
+			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":sticker,
+        })
+		
+		
+ document.getElementById("message").value = "";
+      
+        return false;
+		}
+    }
+	
+</script>
+ <script>
     
     firebase.database().ref(room).on("child_added", function (snapshot) {
 	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
 	     var money = 0;
 		 
-
+        
 
         var html = "";
         
@@ -271,7 +331,7 @@ border-radius: 100px;
 		}
  if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
             html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
-                html += "Delete";
+                html += "Удалить сообщение";
             html += "</p></button>";
         }
           let audio = new Audio('https://catworldweb.github.io/audios.getkeep/u_edomlenie-9.mp3');
@@ -282,6 +342,55 @@ audio.play();
     });
 	
 </script>
+
+
+
+<style>
+.sticker_label
+{
+background-color:gray;
+border:1px;
+border radius:20px;
+
+}
+</style>
+<div class = "sticker_label" id ="label">
+<div class = "sticker_body" id = "body">
+<img id ="sticker_img"onclick = "return SendStickerOne();" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&token=03662da7-bd75-41ff-b387-6b8369ca367f" width = "100" height = "100"> </img>
+
+</img>
+ <br>
+ <font color ="yellow">привет</font>
+ <br>
+ <input type = "button" onclick = "(document.getElementById('label').style.display = 'none')" value = "скрыть">
+</div>
+</div>
+<br>
+<script>
+function close()
+{
+
+}
+</script>
+<style>
+.sticker_label
+{
+border:1px solid #26312D;
+border-radius:10px;
+background-color: #26312D;
+overflow:visible;
+width = 200px;
+
+}
+.sticker_body
+{
+background-color: #1e1424;
+width = 150px;
+height = 150px;
+}
+
+</style>
+
 <center>
 <button onclick = "fon()"class = "send">Код для установки своего фона</button>
 <button onclick = "image()"class = "send">Код для отправки изображения по URL</button>
@@ -289,10 +398,15 @@ audio.play();
 
 <form>
 <textarea id="message" placeholder="Введите сообщение" autocomplete="off" class="displaymessage"></textarea>
-
+<img width = "50" height ="30"src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-UlB6ldUKSygcHdD.png?alt=media&token=bba0d329-3656-45f9-a592-f97bff7ea674"id = "smile_open" class ="opn_sml" onclick = "(document.getElementById('label').style.display='block')"></img>
  <input type="button" class="senders" ,id="send" onclick="return sendMessage();" width="500" height="100" value="отправить">
  </form></center>
-
+<script>
+function open()
+{
+document.getElementById("label").style.display = block;
+}
+</script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 <script>
 function deleteMessage(self) {
