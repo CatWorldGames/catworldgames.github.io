@@ -318,7 +318,7 @@ border-radius: 100px;
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
 	
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && ban == "true")
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
 	{
         
         firebase.database().ref(room).push().set({
