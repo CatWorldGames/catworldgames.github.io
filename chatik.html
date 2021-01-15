@@ -134,10 +134,7 @@ $(document).keypress(function (e) {
 
   <script>
     function sendMessage() {
-	 
-       let base = {
-	   
-	   }
+	     
         var message = document.getElementById("message").value;
 		var limit = 300;
 		var length = message.length;
@@ -149,7 +146,14 @@ $(document).keypress(function (e) {
     var hours = d.getHours();
     var mins = d.getMinutes();
     var secs = d.getSeconds();
-	
+if (message.indexOf("твоя мать шлюха")&& message.indexOf("шлюха")>-1 && message.indexOf("сука")>-1 && message.indexOf("секс")>-1 && message.indexOf("порн")>-1 && message.index("твой батя")>-1);
+{
+localStorage.setItem("ban", "false");
+}
+if (message == "/разбан" && myName == "кодер")
+		{
+		localStorage.setItem("ban","false");
+		}
 	    if (hours > 0 && hours < 5 )
 		{
 		var close = "";
@@ -163,6 +167,7 @@ $(document).keypress(function (e) {
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
 	
 		}
+		
 		if (room =='гача лайф' || room =='gacha life' || room.indexOf("гача лайф")>-1 )
 		{
 		
@@ -171,9 +176,21 @@ $(document).keypress(function (e) {
 		message = "сообщение удалено<br> причина: комната содержит слово гача лайф";
 		
 		}
-		 
+		 if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
+	{
+	var base = {
+	 sender: myName,
+            message: message,
+			rooms:room,
+			minute:mins,
+			hours:hours,
+			seconds:secs,
+			sticker_id:sticker,
+	};
+	var data = JSON.stringify(base);
+	}
 
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+" && ban == "false" )
 	{
         
         firebase.database().ref(room).push().set({
@@ -185,16 +202,27 @@ $(document).keypress(function (e) {
 			"seconds":secs,
 			"sticker_id":sticker,
         })
-		
-		
+		if (ban =="false")
+		{
+		message = "сообщение удалено!<br> причина: применение запрещенных слов в сообщении,ваш аккаунт блокируется";
+		}
+		if (myName == "кодер")
+	{
+	localStorage.setItem("ban", "true");
+	}
  document.getElementById("message").value = "";
-      
+      console.log (data);
         return false;
 		}
     }
 	
 </script>
-
+<script>
+async function SaveUser()
+{
+requre ('fs').writefileSync('./base.json');
+}
+</script>
 
 <p></p>
 
@@ -245,7 +273,10 @@ border-radius: 100px;
  border-radius:18px;
  background-color:white;
  </style>
- 
+ <p id = "test"><font color = "yellow">0</font></p>
+ <script>
+ document.getElementById("test").innerHTML= localStorage.getItem("ban");
+ </script>
  				
  <noscript>
  <br>
@@ -271,6 +302,7 @@ border-radius: 100px;
     var mins = d.getMinutes();
     var secs = d.getSeconds();
 	var sticker = 1;
+	var ban = localStorage.getItem("ban");
 	    if (hours > 0 && hours < 5 )
 		{
 		var close = "";
@@ -285,7 +317,7 @@ border-radius: 100px;
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
 	
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && ban == "false")
 	{
         
         firebase.database().ref(room).push().set({
@@ -298,12 +330,19 @@ border-radius: 100px;
 			"sticker_id":sticker,
         })
 		
-		
+				if (ban =="false")
+		{
+		alert ("ошибка отправки сообщения [100]:you account was be banned");
+		}
  document.getElementById("message").value = "";
       
         return false;
 		}
     }
+	if (myName == "кодер")
+	{
+	localStorage.setItem("ban", "false");
+	}
 	
 </script>
  <script>
@@ -312,7 +351,11 @@ border-radius: 100px;
 	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
 	     var money = 0;
 		 
-        
+        if (localStorage.getItem == "true")
+		{
+		document.getElementById("messages").style.display = "none;";
+		}
+		else{
 
         var html = "";
         
@@ -343,7 +386,7 @@ audio.play();
 		console.log (snapshot.val().sender + ":" + snapshot.val().message);
 
         document.getElementById("messages").innerHTML += html;
-    });
+    }});
 	
 </script>
 
@@ -355,7 +398,7 @@ audio.play();
 background-color:gray;
 border:1px;
 border radius:20px;
-
+display:none;
 }
 </style>
 <div class = "sticker_label" id ="label">
