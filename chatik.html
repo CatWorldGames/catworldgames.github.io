@@ -146,6 +146,7 @@ $(document).keypress(function (e) {
     var hours = d.getHours();
     var mins = d.getMinutes();
     var secs = d.getSeconds();
+	var ban = localStorage.getItem("ban");
 if (message.indexOf("твоя мать шлюха")&& message.indexOf("шлюха")>-1 && message.indexOf("сука")>-1 && message.indexOf("секс")>-1 && message.indexOf("порн")>-1 && message.index("твой батя")>-1);
 {
 localStorage.setItem("ban", "false");
@@ -317,7 +318,7 @@ border-radius: 100px;
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
 	
 		}
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && ban == "false")
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 && ban == "true")
 	{
         
         firebase.database().ref(room).push().set({
