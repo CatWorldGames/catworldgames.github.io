@@ -1,68 +1,566 @@
-<?php
+<html><head>
+<script>
+function update()
+{
 
-$link = mysqli_connect("localhost", "mysql", "mysql", "chat") or die ("ошибка сервера...");
-$sql = "SELECT*FROM 'messages' ORDER BY 'date'";
-$result = mysqli_query($link,$sql);
-$out = mysqli_fetch_assoc($result);
+}
+</script>
 
-if (!isset($_GET['add_message'])){
-  if(mysql_num_rows($result)>= 1){
-    $out = mysqli_fetch_assoc($result);
-    while ($out = mysqli_fetch_assoc($result)) {
-      echo "<ul class = 'display'></ul>"."<li>".$out['name']."|".$out['date']."<br>".$out['message']."</li>"."<hr>";
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+ <script src="https://www.googletagservices.com/activeview/js/current/osd.js?cb=%2Fr20100101"></script><script src="https://partner.googleadservices.com/gampad/cookie.js?domain=catworldweb.github.io&amp;callback=_gfp_s_&amp;client=ca-pub-7088445945474705"></script><script src="https://pagead2.googlesyndication.com/pagead/js/r20201112/r20190131/show_ads_impl.js" id="google_shimpl"></script><script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
+ <script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
+ <link rel="shortcut icon" href="https://sun2-3.userapi.com/LS5KLD4M_s8P4s2goo6XZSIUx2eLzOka4ZqbAg/5NyARrS_nm8.jpg?ava=1" type="image/png">
+ 				<meta name="viewport" content="width=device-width, initial-scale=1">
+ 				<script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
+ <script>
+ document.title = "Chat";
+ </script><title>(уведомление)Сообщение отправил:d</title><title>Chat</title>
+ <script>
+$(document).keypress(function (e) {
+    if (e.which == 13) {
+            sendMessage();
+            document.getElementById("message").value = "";
+            
     }
+});
+
+
+ </script><style type="text/css">
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  overflow: hidden;
+  background-color: #000;
+  height:50px;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 16px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #0c170c;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
   }
 }
 
-if (isset($_GET['add_message'])){
-  echo '
-  <form action = "chat.php"method = "POST"><input type = "text" name = "name" placeholder = "Введите имя"class = "names">
-    <br><br>
-    <input type = "text" name="message" placeholder = "Message..."class = "messages1">
-    <br></br>
-    <button name="submit" class = "btn">Отправить</button>
-  </form>
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 
+   </style><script>
+   function auth()
+   {
+   document.location.href = "auth.html";
+   }
+   </script><script>
+  function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+   </script><link rel="preload" href="https://adservice.google.ru/adsid/integrator.js?domain=catworldweb.github.io" as="script"><script type="text/javascript" src="https://adservice.google.ru/adsid/integrator.js?domain=catworldweb.github.io"></script><link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=catworldweb.github.io" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=catworldweb.github.io"></script><meta http-equiv="origin-trial" content="A2shzsdPO+RKe83bUqT9oVkYwGZN6j9O7nrcOASNFPuQz8HefgVYb9qAqn6coNCSDIRtXoi6ybCrjEsYh3caFgIAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MTM0OTU4NjgsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A2shzsdPO+RKe83bUqT9oVkYwGZN6j9O7nrcOASNFPuQz8HefgVYb9qAqn6coNCSDIRtXoi6ybCrjEsYh3caFgIAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MTM0OTU4NjgsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A2shzsdPO+RKe83bUqT9oVkYwGZN6j9O7nrcOASNFPuQz8HefgVYb9qAqn6coNCSDIRtXoi6ybCrjEsYh3caFgIAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MTM0OTU4NjgsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A2shzsdPO+RKe83bUqT9oVkYwGZN6j9O7nrcOASNFPuQz8HefgVYb9qAqn6coNCSDIRtXoi6ybCrjEsYh3caFgIAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MTM0OTU4NjgsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
+  
+ 
+   
+   
+ 
+ <body bgcolor="#232323" style="zoom: 1;">
+  <div class="topnav">
+  <center><strong><p id="title" class="room">a</p></strong></center><p></p>
+  </div>
+<p></p>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src="https://catworldgames.github.io/database.js">
+
+ 
+ 
+   
+  
+
+  </script>
   <style>
-  .names {
-    width = 100%;
-    height = 80px;
-    border:1px solid black;
-  }
-  .messages1 {
-    width = 100%;
-    height = 80px;
-    border:1px solid black;
-  }
-  div {
-    display:none;
-  }
-  body {
-    background-color:black;
-  }
-  .btn {
-    border:1px;
-    border-radius:10px;
-    width:100px;
-    height:100px;
-  }
-  .display {
-    background-color:white;
-    width:260px;
-    height:300;
-    overflow:visible;
+  .room
+  {
+  color:orange;
+  font-size:20px;
   }
   </style>
-';
-}
+  <script>
+  document.getElementById("title").innerHTML = room;
+  </script>
 
 
-if (isset($_POST['submit'])){
-  if(!empty($_POST['name'])&& !empty(['message'])){
-    $names = $_POST['name'];
-    $send = $_POST['message'];
-    $sql = "INSERT INTO 'messages'('id','name','messages','date')VALUES(NULL,'".$names."', '".$send."', date('d.m.Y:i:s'));";
-    mysqli_query($link, $sql);
-  }
+
+  <script>
+    function sendMessage() {
+	     
+        var message = document.getElementById("message").value;
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		var nickl = myName.length;
+		var sticker = 0;
+		var resultnick = nickl - limit;
+		var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+	
+
+
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300 ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
+		
+		if (room =='гача лайф' || room =='gacha life' || room.indexOf("гача лайф")>-1 )
+		{
+		
+		
+		alert ("этот сайт не приветствует гача лайф!");
+		message = "сообщение удалено<br> причина: комната содержит слово гача лайф";
+		
+		}
+		 if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
+	{
+	var base = {
+	 sender: myName,
+            message: message,
+			rooms:room,
+			minute:mins,
+			hours:hours,
+			seconds:secs,
+			sticker_id:sticker,
+	};
+	var data = JSON.stringify(base);
+	}
+
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+"  )
+	{
+        
+        firebase.database().ref(room).push().set({
+            "sender": myName,
+            "message": message,
+			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":sticker,
+        })
+		if (message =="%привет")
+	{
+	SendStickerOne();
+	}
+	if (message =="%я зол")
+	{
+	SendStickerTwo();
+	}	
+ document.getElementById("message").value = "";
+      console.log (data);
+        return false;
+		}
+    }
+	
+</script>
+<script>
+async function SaveUser()
+{
+requre ('fs').writefileSync('./base.json');
 }
-?>
+</script>
+
+<p></p>
+
+<style>
+.text{
+color:orange;
+cursor:pointer;
+}
+</style>
+<hr><hr><hr><hr><hr>
+
+
+<p></p>
+<script>
+function fon()
+{
+document.getElementById("message").value =  document.getElementById("message").value +"<style> body{background-image:url(ссылка на изображение);}</style>";
+}
+</script>
+<script>
+function image()
+{
+document.getElementById("message").value = document.getElementById("message").value+"<img src = 'ссылка на изображение'width = '100' height = '100' ></img>";
+}
+</script>
+<script>
+function kapets()
+{
+document.getElementById("message").value = document.getElementById("message").value +"<a href = 'ссылка'>текст ссылки</a>";
+}
+</script>
+<a href="plagin.html"><font size="4px"><font color="blue">Установить чат на свой сайт</font></font></a>
+<script data-ad-client="ca-pub-7088445945474705" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-checked-head="true"></script>
+
+
+
+
+
+ <style>
+ .senders{
+border:3px solid white;
+border-radius: 100px;
+ }
+ .complaint
+ {
+ color:black;
+ border:1px solid white;
+ border-radius:18px;
+ background-color:white;
+ </style>
+
+ <script>
+ document.getElementById("test").innerHTML= localStorage.getItem("ban");
+ </script>
+ 				
+ <noscript>
+ <br>
+ <img src = "https://avatars.mds.yandex.net/get-zen_doc/1906877/pub_5df396f1d4f07a00ad68e713_5df641c098930900b68cbf76/scale_1200" width ="200" height = "200"></img><br>
+ <font color = "yellow"><h4>Упс... наш сайт не может работать без JS</h4></font>
+ </noscript>
+ 
+ <ul id="messages"><p></p><li id="message--MR05cZwLIs5qJn7WN1X" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:34:8<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05dNl9gq0UCa0Huz6" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:34:12<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05eItcvD-KogqxVFi" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:34:15<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05es8V5La4jIREnan" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:34:18<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05hbX0n-5FVB36GAd" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:34:29<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05rBKPwGgUdgOwOjH" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:8<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05rax7DYty7J80n1Z" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:10<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05rzUL2W3YiMu0QRY" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:11<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05sJxvTnYQ532rch2" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:13<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05scLyyYbpMYrx9Nc" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:14<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MR05ss5X21xF-SAv8wZ" class="canvaschat">s: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100">  16:35:15<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p></p><li id="message--MRAK30DNlqFKY_f74T7" class="you">d: %я зол 16:13:23<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p><button data-id="-MRAK30DNlqFKY_f74T7" onclick="deleteMessage(this);" class="send">Удалить сообщение<p></p></button></p><p></p><li id="message--MRAK30OmPceovJ_cOgE" class="you">d: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&amp;token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width="100" height="100">  16:13:23<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p><button data-id="-MRAK30OmPceovJ_cOgE" onclick="deleteMessage(this);" class="send">Удалить сообщение<p></p></button></p><p></p><li id="message--MRAZ2QILcWmkQHY70BJ" class="you">d: <img onclick="SendSticker()" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&amp;token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width="100" height="100">  17:18:52<p></p></li><br><a href="https://vk.com/topic-192963872_46699128" class="complaint">пожаловаться на сообщение</a><p><button data-id="-MRAZ2QILcWmkQHY70BJ" onclick="deleteMessage(this);" class="send">Удалить сообщение<p></p></button></p></ul>
+ <script src="js/jquery-2.2.3.min.js"></script>
+ <script>
+    function SendStickerOne() {
+	 
+      
+        var message = '<img onclick = "SendSticker()" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&token=03662da7-bd75-41ff-b387-6b8369ca367f" width = "100" height = "100"> </img>';
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		var nickl = myName.length;
+		
+		var resultnick = nickl - limit;
+		var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+	var sticker = 1;
+	var ban = localStorage.getItem("ban");
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		document.getElementById("send").style.display = none;
+		doument.getElementById("message").style.display = none;
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
+	{
+        
+        firebase.database().ref(room).push().set({
+            "sender": myName,
+            "message": message,
+			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":sticker,
+        })
+		
+				
+ document.getElementById("message").value = "";
+      
+        return false;
+		}
+    }
+	
+	
+</script>
+<script>
+function SendStickerTwo() {
+	 
+      
+        
+      
+        var message = '<img onclick = "SendSticker()" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width = "100" height = "100"> </img>';
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		var nickl = myName.length;
+		
+		var resultnick = nickl - limit;
+		var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+	var sticker = 2;
+	var ban = localStorage.getItem("ban");
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		document.getElementById("send").style.display = none;
+		doument.getElementById("message").style.display = none;
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
+	{
+        
+        firebase.database().ref(room).push().set({
+            "sender": myName,
+            "message": message,
+			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":sticker,
+        })
+		
+		
+ document.getElementById("message").value = "";
+      
+        return false;
+		}
+    }
+</script>
+ <script>
+    
+    firebase.database().ref(room).on("child_added", function (snapshot) {
+	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
+	     var money = 0;
+		 
+       
+	
+
+        var html = "";
+        
+        
+		if (snapshot.val().sender != myName)
+		{
+        html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
+       
+        
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+		}
+		if (snapshot.val().sender == myName)
+		{
+		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
+       
+        
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+		}
+ if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
+            html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
+                html += "Удалить сообщение";
+            html += "</p></button>";
+        }
+          let audio = new Audio('https://catworldweb.github.io/audios.getkeep/u_edomlenie-9.mp3');
+audio.play();
+		console.log (snapshot.val().sender + ":" + snapshot.val().message);
+
+        document.getElementById("messages").innerHTML += html;
+   });
+	
+</script>
+
+
+
+<style>
+.sticker_label
+{
+background-color:gray;
+border:1px;
+border radius:20px;
+display:none;
+}
+</style>
+<div class="sticker_label" id="label" style="display: block;">
+<div class="sticker_body" id="body">
+<img id="sticker_img" onclick="return SendStickerOne();" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-2.png?alt=media&amp;token=03662da7-bd75-41ff-b387-6b8369ca367f" width="100" height="100"> 
+
+
+ <br>
+ <font color="yellow">привет</font>
+ <br>
+
+</div>
+<div class="sticker_body" id="body">
+
+<img id="sticker_img" onclick="return SendStickerTwo();" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&amp;token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width="100" height="100">
+
+ <br>
+ <font color="yellow">Я зол</font>
+ <br>
+ </div>
+  <input type="button" onclick="(document.getElementById('label').style.display = 'none')" value="скрыть">
+</div>
+<br>
+<script>
+function close()
+{
+
+}
+</script>
+<style>
+.sticker_label
+{
+border:1px solid #26312D;
+border-radius:10px;
+background-color: #26312D;
+overflow:visible;
+width = 200px;
+
+}
+.sticker_body
+{
+background-color: #1e1424;
+width = 150px;
+height = 150px;
+}
+
+</style>
+
+<center>
+<button onclick="fon()" class="send">Код для установки своего фона</button>
+<button onclick="image()" class="send">Код для отправки изображения по URL</button>
+<button onclick="kapets()" class="send">код для ссылки</button>
+
+<form>
+<textarea id="message" placeholder="Введите сообщение" autocomplete="off" class="displaymessage"></textarea>
+<img width="50" height="30" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-UlB6ldUKSygcHdD.png?alt=media&amp;token=bba0d329-3656-45f9-a592-f97bff7ea674" id="smile_open" class="opn_sml" onclick="(document.getElementById('label').style.display='block')">
+ <input type="button" class="senders" ,id="send" onclick="return sendMessage();" width="500" height="100" value="отправить">
+ </form></center>
+<script>
+function open()
+{
+document.getElementById("label").style.display = block;
+}
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script>
+function deleteMessage(self) {
+  
+    var messageId = self.getAttribute("data-id");
+ 
+ 
+    firebase.database().ref(room).child(messageId).remove();
+}
+
+firebase.database().ref(room).on("child_removed", function (snapshot) {
+ 
+    document.getElementById("message-" + snapshot.key).innerHTML = "сообщение удалено";
+});
+</script>
+ <style>
+ .text{
+ color: black;
+ }
+ .send
+ {
+ background-color: red;
+ border:5px solid red;
+ border-radius:15px;
+ color:yellow;
+ 
+ }
+ .work
+ {
+  background-color: blue;
+ border:5px solid blue;
+ border-radius:15px;
+ color:yellow;
+ }
+ .canvaschat
+ {
+ background-color:blue;
+ border:10px solid blue;
+ border-radius:15px;
+width:400px;
+ 
+color:yellow;
+ }
+ .displaymessage
+ {
+ border: 1px solid white;
+ border-radius:50px;
+ }
+ .you
+ {
+ background-color:green;
+ border:3px solid green;
+ border-radius:15px;
+ width:400px;
+ 
+color:yellow;
+ 
+ }
+ </style>
+
+ 
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?guci=2.2.0.0.2.2.0.0&amp;client=ca-pub-7088445945474705&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;lmt=1605947559&amp;plat=1%3A32776%2C2%3A16809992%2C9%3A32776%2C10%3A32%2C11%3A32%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C40%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fcatworldweb.github.io%2Fchatik.html&amp;ea=0&amp;flash=32.0.0&amp;pra=5&amp;wgl=1&amp;tt_state=W3siaXNzdWVyT3JpZ2luIjoiaHR0cHM6Ly9hZHNlcnZpY2UuZ29vZ2xlLmNvbSIsInN0YXRlIjowfSx7Imlzc3Vlck9yaWdpbiI6Imh0dHBzOi8vYXR0ZXN0YXRpb24uYW5kcm9pZC5jb20iLCJzdGF0ZSI6MH1d&amp;dt=1606057129236&amp;bpp=20&amp;bdt=3927&amp;idt=97&amp;shv=r20201112&amp;cbv=r20190131&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;nras=1&amp;correlator=7356424862046&amp;frm=20&amp;pv=2&amp;ga_vid=1990993347.1604661404&amp;ga_sid=1606057129&amp;ga_hid=266397875&amp;ga_fc=1&amp;iag=0&amp;icsg=2795534&amp;dssz=20&amp;mdo=0&amp;mso=0&amp;u_tz=180&amp;u_his=2&amp;u_java=0&amp;u_h=768&amp;u_w=1366&amp;u_ah=728&amp;u_aw=1366&amp;u_cd=24&amp;u_nplug=5&amp;u_nmime=9&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1708&amp;bih=815&amp;scr_x=0&amp;scr_y=0&amp;eid=21065725&amp;oid=3&amp;pvsid=2147908974283544&amp;pem=976&amp;ref=https%3A%2F%2Fcatworldweb.github.io%2F&amp;rx=0&amp;eae=2&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1366%2C0%2C1366%2C728%2C1707%2C815&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=8192&amp;bc=31&amp;ifi=0&amp;uci=a!0&amp;fsb=1&amp;dtd=129" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!0" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_5439771821931" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20201112/r20190131/zrt_lookup.html#" data-ad-client="ca-pub-7088445945474705" style="display: none;"></iframe><iframe id="google_osd_static_frame_1218932347938" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>
