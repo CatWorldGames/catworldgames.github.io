@@ -146,15 +146,9 @@ $(document).keypress(function (e) {
     var hours = d.getHours();
     var mins = d.getMinutes();
     var secs = d.getSeconds();
-	var ban = localStorage.getItem("ban");
-if (message.indexOf("твоя мать шлюха")&& message.indexOf("шлюха")>-1 && message.indexOf("сука")>-1 && message.indexOf("секс")>-1 && message.indexOf("порн")>-1 && message.index("твой батя")>-1);
-{
-localStorage.setItem("ban", "false");
-}
-if (message == "/разбан" && myName == "кодер")
-		{
-		localStorage.setItem("ban","false");
-		}
+	
+
+
 	    if (hours > 0 && hours < 5 )
 		{
 		var close = "";
@@ -191,7 +185,7 @@ if (message == "/разбан" && myName == "кодер")
 	var data = JSON.stringify(base);
 	}
 
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+" && ban == "false" )
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+"  )
 	{
         
         firebase.database().ref(room).push().set({
@@ -203,14 +197,14 @@ if (message == "/разбан" && myName == "кодер")
 			"seconds":secs,
 			"sticker_id":sticker,
         })
-		if (ban =="false")
-		{
-		message = "сообщение удалено!<br> причина: применение запрещенных слов в сообщении,ваш аккаунт блокируется";
-		}
-		if (myName == "кодер")
+		if (message =="%привет")
 	{
-	localStorage.setItem("ban", "true");
+	SendStickerOne();
 	}
+	if (message =="%я зол")
+	{
+	SendStickerTwo();
+	}	
  document.getElementById("message").value = "";
       console.log (data);
         return false;
@@ -274,7 +268,7 @@ border-radius: 100px;
  border-radius:18px;
  background-color:white;
  </style>
- <p id = "test"><font color = "yellow">0</font></p>
+
  <script>
  document.getElementById("test").innerHTML= localStorage.getItem("ban");
  </script>
@@ -318,6 +312,61 @@ border-radius: 100px;
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
 	
 		}
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 300 )
+	{
+        
+        firebase.database().ref(room).push().set({
+            "sender": myName,
+            "message": message,
+			"rooms":room,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":sticker,
+        })
+		
+				
+ document.getElementById("message").value = "";
+      
+        return false;
+		}
+    }
+	
+	
+</script>
+<script>
+function SendStickerTwo() {
+	 
+      
+        
+      
+        var message = '<img onclick = "SendSticker()" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width = "100" height = "100"> </img>';
+		var limit = 300;
+		var length = message.length;
+		var lenghts = length - limit;
+		var nickl = myName.length;
+		
+		var resultnick = nickl - limit;
+		var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+	var sticker = 2;
+	var ban = localStorage.getItem("ban");
+	    if (hours > 0 && hours < 5 )
+		{
+		var close = "";
+		document.getElementById("send").style.display = none;
+		doument.getElementById("message").style.display = none;
+		close += "<img src = 'http://www.clipartsuggest.com/images/243/no-sign-x-by-skotan-red-circle-with-diagonal-cross-intended-as-an-mLJGYP-clipart.png' width = '70' height = '70' alt = 'blocked'></img><font color = 'yellow'><h3>Простите,но сервер закрыт до 6:00 по МСК времени </h3></font>";
+		}
+		
+		if (myName == "" && message == "" || myName.length >300 || message.length > 300  ) 
+		{
+		var text = "";
+		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
+	
+		}
           if (myName != "" && message != "" && myName.length < 300 && message.length < 300)
 	{
         
@@ -331,20 +380,12 @@ border-radius: 100px;
 			"sticker_id":sticker,
         })
 		
-				if (ban =="false")
-		{
-		alert ("ошибка отправки сообщения [100]:you account was be banned");
-		}
+		
  document.getElementById("message").value = "";
       
         return false;
 		}
     }
-	if (myName == "кодер")
-	{
-	localStorage.setItem("ban", "false");
-	}
-	
 </script>
  <script>
     
@@ -352,11 +393,8 @@ border-radius: 100px;
 	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
 	     var money = 0;
 		 
-        if (localStorage.getItem == "true")
-		{
-		document.getElementById("messages").style.display = "none;";
-		}
-		else{
+       
+	
 
         var html = "";
         
@@ -377,6 +415,15 @@ border-radius: 100px;
         html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
+		if(snapshot.val().message == "кто я )
+	{
+	html += "<br>";
+	 html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
+       
+        
+        html += snapshot.val().sender + ": " + "ваше имя:"+snapshot.val().sender " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+	}
  if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
             html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
                 html += "Удалить сообщение";
@@ -387,7 +434,7 @@ audio.play();
 		console.log (snapshot.val().sender + ":" + snapshot.val().message);
 
         document.getElementById("messages").innerHTML += html;
-    }});
+   });
 	
 </script>
 
@@ -410,8 +457,17 @@ display:none;
  <br>
  <font color ="yellow">привет</font>
  <br>
- <input type = "button" onclick = "(document.getElementById('label').style.display = 'none')" value = "скрыть">
+
 </div>
+<div class = "sticker_body" id = "body">
+
+<img id ="sticker_img"onclick = "return SendStickerTwo();" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width = "100" height = "100"></img>
+</img>
+ <br>
+ <font color ="yellow">Я зол</font>
+ <br>
+ </div>
+  <input type = "button" onclick = "(document.getElementById('label').style.display = 'none')" value = "скрыть">
 </div>
 <br>
 <script>
