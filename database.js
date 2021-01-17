@@ -12,7 +12,5 @@ var firebaseConfig = {
    firebase.initializeApp(firebaseConfig);
    
    var myName = prompt("Введите свое имя");
-   
-  var room = prompt("Введите название комнаты");
-   
-   
+   var room = prompt ("Введите название комнаты");
+ 

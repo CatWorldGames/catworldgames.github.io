@@ -269,9 +269,8 @@ border-radius: 100px;
  background-color:white;
  </style>
 
- <script>
- document.getElementById("test").innerHTML= localStorage.getItem("ban");
- </script>
+ 
+ 
  				
  <noscript>
  <br>
@@ -437,6 +436,55 @@ audio.play();
 	
 </script>
 
+<script>
+    
+    firebase.database().ref(room).on("child_changed", function (snapshot) {
+	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
+	     var money = 0;
+		 
+       
+	
+
+        var html = "";
+        
+        
+		if (snapshot.val().sender != myName)
+		{
+        html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
+       
+        
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+		}
+				if (snapshot.val().message == "кто я")
+		{
+		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
+       
+        
+        html += snapshot.val().sender + ": " + "вы:"+snapshot.val().sender + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+		}
+		if (snapshot.val().sender == myName)
+		{
+		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
+       
+        
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
+		}
+ if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
+            html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
+                html += "Удалить сообщение";
+            html += "</p></button>";
+        }
+          let audio = new Audio('https://catworldweb.github.io/audios.getkeep/u_edomlenie-9.mp3');
+audio.play();
+		console.log (snapshot.val().sender + ":" + snapshot.val().message);
+
+        document.getElementById("messages").innerHTML += html;
+   });
+	
+</script>
 
 
 <style>
