@@ -1,0 +1,109 @@
+<html>
+<head><title>
+Меню Конструктора
+</title>
+<meta charset = "utf-8"/>
+</head>
+<style>
+
+.menu
+{
+background-color:white;
+width:100%
+height:4900px;
+bo
+}
+.create_project
+{
+border:1px;
+border-radius:5px;
+width:300px;
+}
+.dialog{
+display:none;
+width:300;
+height:200;
+border-radius:3px;
+}
+
+.inputs
+{
+border:1px solid blue;
+border-radius:6px;
+font-weight:bold;
+}
+body{
+background-color:purple;
+}
+.send{
+border-radius:10px;
+background-color:blue;
+color:white;
+border:1px;
+}
+span
+{
+float:right;
+cursor:overflow;
+}
+</style>
+<body>
+
+<center>
+<font color = "white"><font size = "20"><b>Construct Site</b></font></font><br><br>
+<button class = "create_project" onclick = "(document.getElementById('dialog').style.display = 'block')(document.getElementById('dialog').style.backgroundColor = 'white')(document.getElementById('dialog').style.border= '1px')(document.getElementById('dialog').style.borderRadius= '19px')">Создать Проект <font color = "blue"><h2>+</h2></font></button>
+<br>
+<br>
+<br>
+<div class = "dialog" id = "dialog">
+<font color = "dark-green"><b>Введите имя проекта</b></font>
+<span onclick = "(document.getElementById('dialog').style.display = 'none')">X</span>
+<input type = "text" placeholder= "" class = "inputs" id = "project">
+<br>
+<button class ="send"type = "submit" onclick = "create()">Создать</button>
+<script>
+function create()
+{
+localStorage.setItem("name", localStorage.getItem("name") + "<br>"+ "<a onclick = 's()'>" + document.getElementById("project").value + "</a>" +document.getElementById("project").value );
+document.location = "projects/develop.html?project =" + document.getElementById("name").innerHTML;
+}
+
+</script>
+</div>
+</center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+<div class = "menu">
+<p id = "name" onclick = "next()">null</p>
+<b onclick ="remove()"><font color = 'red'>Стереть данные</b></font>
+</div>
+</center>
+<script>
+if (localStorage.getItem("name") !="")
+{
+document.getElementById("name").innerHTML = "<br>" + localStorage.getItem("name")  +"<br>" ;
+
+else
+{
+document.getElementById("name").innerHTML = "null";
+}
+</script>
+<script>
+function remove()
+
+{
+localStorage.removeItem("name");
+document.location.href = "";
+}
+</script>
+<script>
+function next()
+{
+document.location = "projects/develop.html?project =" + document.getElementById("name").innerHTML;
+}
+</script>
