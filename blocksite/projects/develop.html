@@ -1,0 +1,239 @@
+<html>
+<head>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<script>
+document.title = "Проект:" + localStorage.getItem("name");
+</script>
+<meta charset = "utf-8" />
+<style>
+#named{
+font-weight:bold;
+color:white;
+
+}
+.toolbar{
+background-color:#008dcd;
+height:100px;
+border:1px;
+border-radius:10px;
+}
+.blocks
+{
+border:1px solid black;
+width: 100px;
+height:300px;
+overflow: auto;
+}
+#block1{
+background-color:cyan;
+color:black;
+width:100px;
+height:60px;
+border-radius:10px;
+font-weight:bold;
+
+}
+.block_canvas_drop
+{
+border:1px solid black;
+width:300px;
+height:600px;
+float:right;
+padding: 1px;
+overflow:auto;
+}
+.event
+{
+background-color:orange;
+border:1px;
+border-radius:15px;
+width:150px;
+padding:3px;
+
+}
+#block2{
+background-color:cyan;
+color:black;
+width:100px;
+height:60px;
+border-radius:10px;
+font-weight:bold;
+
+}
+#block3{
+background-color:cyan;
+color:black;
+width:100px;
+height:60px;
+border-radius:10px;
+font-weight:bold;
+
+}
+#block4{
+background-color:green;
+color:black;
+width:100px;
+height:60px;
+border-radius:10px;
+font-weight:bold;
+
+}
+#d1{
+width:100px;
+}
+#h1
+{
+width:100px;
+}
+</style>
+</head>
+<body>
+<div class = "toolbar">
+<p id  ="named"></p>
+
+<script>
+var title = window.location.search;
+title = title.substring(11);
+document.getElementById("named").innerHTML = localStorage.getItem("name");
+</script>
+<br>
+<font color = "white"><b onclick = "remove()">Delete</b></font>
+<font color = "white"><b onclick = "(document.location.href = 'run.html')">Run</b></font>
+</div>
+<script>
+
+function remove()
+{
+localStorage.removeItem("name");
+localStorage.removeItem("code");
+document.location.href = "https://catworldgames.github.io/blocksite/menu.html";
+}
+
+</script>
+<script>
+function blockhtml()
+{
+
+var div = document.createElement('div');
+div.id = 'block1'
+div.ClassName = "blocks1";
+div.innerHTML="html:fragment";
+div.setAttribute("draggable", true);
+div.setAttribute("ondragstart","drag(event)");
+document.body.appendChild( div );
+
+}
+</script>
+<script>
+function blockh1()
+{
+
+var div = document.createElement('div');
+div.id = 'block2'
+div.ClassName = "blocks1";
+div.innerHTML="h1 set text:<input type = 'text' placeholder = 'Enter Text' id = 'h1' value =''>";
+div.setAttribute("draggable", true);
+div.setAttribute("ondragstart","drag(event)");
+document.body.appendChild( div );
+var text = document.createElement('input');
+text.type = "text";
+text.setAttribute("placeholder", "Enter Text");
+document.div.appendChild( text );
+
+}
+</script>
+<script>
+function blockinput()
+{
+
+var div = document.createElement('div');
+div.id = 'block3'
+div.ClassName = "blocks1";
+div.innerHTML="set input:<input type = 'text' placeholder = 'Enter Text' autocomplete = 'off' id = 'd1' >";
+div.setAttribute("draggable", true);
+div.setAttribute("ondragstart","drag(event)");
+document.body.appendChild( div );
+
+
+}
+</script>
+<script>
+function script()
+{
+
+var div = document.createElement('div');
+div.id = 'block4'
+div.ClassName = "blocks4";
+div.innerHTML="Add Costum Script:<input type = 'text' placeholder = 'Enter Script' autocomplete = 'off' id = 'scripts' value = ''>";
+div.setAttribute("draggable", true);
+div.setAttribute("ondragstart","drag(event)");
+document.body.appendChild( div );
+
+
+}
+</script>
+<div class = "blocks">
+<b>Blocks</b>
+<div id = "html">
+<div id ="fragment" onclick = "blockhtml()">
+<b>html:fragment
+</div>
+<br>
+<div id ="fragment" onclick = "blockh1()">
+<b>h1</b>
+</div>
+<div id ="fragment" onclick = "blockinput()">
+EditText
+<b></b>
+<div id ="fragment" onclick = "script()">
+<b>
+Add Costum Script
+</b>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+function allowDrop(ev) {
+    ev.preventDefault();
+	
+	
+   }
+  
+   function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+	if(localStorage.getItem("code")!=null ||	ev.target.id == "block1")
+	{
+	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<html><title>Site Made With Construct Site</title></head><body>");
+	}
+	if (ev.target.id == "block2")
+	{
+	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<h1>"+document.getElementById("h1").value +"</h1>");
+	
+	}
+	if(localStorage.getItem("code")!=null ||	ev.target.id == "block3")
+	{
+	var value = document.getElementById("d1").value;
+	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<input type = 'text' value = " + value + ">");
+	}
+   }
+  
+   function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+	
+   }
+
+</script>
+<br>
+<div class = "block_canvas_drop"ondrop="drop(event)" ondragover="allowDrop(event)">
+<div class = "event">
+<b>When the page opened</b>
+</div>
+
+</div>
