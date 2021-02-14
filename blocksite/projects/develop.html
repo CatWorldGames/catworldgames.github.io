@@ -208,22 +208,22 @@ function allowDrop(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 	if(localStorage.getItem("code")!=null ||	ev.target.id == "block1")
 	{
-	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<html><title>Site Made With Construct Site</title></head><body>");
+	localStorage.setItem("code",  "<br>" + "<html><title>Site Made With Construct Site</title></head><body>");
 	}
 	if (ev.target.id == "block2")
 	{
-	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<h1>"+document.getElementById("h1").value +"</h1>");
+	localStorage.setItem("code2", "<br>" + "<h1>"+document.getElementById("h1").value +"</h1>");
 	
 	}
-	if(localStorage.getItem("code")!=null ||	ev.target.id == "block3")
+	if(localStorage.getItem("code3")!=null ||	ev.target.id == "block3")
 	{
 	var value = document.getElementById("d1").value;
-	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + "<input type = 'text' value = " + value + ">");
+	localStorage.setItem("code3","<br>" + "<input type = 'text' value = " + value + ">");
 	}
-	if(localStorage.getItem("code")!=null ||	ev.target.id == "block4")
+	if(localStorage.getItem("code4")!=null ||	ev.target.id == "block4")
 	{
 	
-	localStorage.setItem("code",localStorage.getItem("code") + "<br>" + document.getElementById("scripts").value);
+	localStorage.setItem("code4", "<br>" + document.getElementById("scripts").value);
 	}
    }
   

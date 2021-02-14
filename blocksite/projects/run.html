@@ -1,6 +1,26 @@
 <html>
 <p id = "r"></p>
 <script>
-var code = document.getElementById("r").innerHTML = localStorage.getItem("code");
+var code = document.getElementById("r").innerHTML = localStorage.getItem("code") + localStorage.getItem("code2") +localStorage.getItem("code3") + localStorage.getItem("code4");
+</script>
+<button onclick = "(writeFile('project.html',localStorage.getItem('code')+ localStorage.getItem('code2') + localStorage.getItem('code3') + localStorage.getItem('code4')))">
+Download Code
+</button>
+<script>
+function writeFile(name, value) {
+var val = value;
+if (value === undefined) {
+val = "";
+}
+var download = document.createElement("a");
+download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+download.download = name;
+download.style.display = "none";
+download.id = "download"; document.body.appendChild(download);
+document.getElementById("download").click();
+document.body.removeChild(download);
+}
+
+
 </script>
 </html>
