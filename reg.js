@@ -10,3 +10,6 @@ var firebaseConfig = {
   };
  
    firebase.initializeApp(firebaseConfig);
+   var mail =document.getElementById("mail").value ;
+			var password =document.getElementById("password").value ;
+			var name = document.getElementById("name").value;
