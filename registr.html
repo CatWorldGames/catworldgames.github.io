@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>
+Регистрация на сайте
+</title>
+<style>
+input::placeholder{
+color:white;
+}
+input{
+background-color:gray;
+border-radius:13px;
+}
+p{
+font-size:30px;
+}
+</style>
+</head>
+<body style = "background-color:black;">
+<center>
+<p style ="color:white;">Регистрация</p>
+</center>
+<br>
+<input type = "text" placeholder = "Почта" id ="mail" autocomplete = "off"  ><br>
+<input type = "password" placeholder = "Пароль" id ="password" autocomplete = "on"  ><br>
+<input type = "text" placeholder = "Имя пользователя" id ="name" autocomplete = "off"  ><br>
+<input type ="hidden" id ="ip" >
+<button onclick ="save()"> Зарегистрироваться</button>
+<br>
+<br><br><br><br><br><br>
+<a href = "mailto:horrorgame430@gmail.com">Написать разработчику</a>
+<br>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script>
+    
+    function save ()  {
+	
+	var name = document.getElementById("name").value;
+	var password =  document.getElementById("password").value;
+	 var mail = document.getElementById("mail").value;
+	 localStorage.setItem("username",name);
+	 localStorage.setItem("mail",mail);
+	  localStorage.setItem("password",password);
+	  
+	  firebase.database().ref(name).push().set({
+            "name":name,
+            "mail": mail,
+			"password":password,
+			"ip": document.getElementById("ip").value,
+        })
+	      url();
+		  
+		  function url()
+		  {
+		  setTimeout(chat,800);
+		  }
+	
+	
+	function chat()
+	{
+	document.location.href= "chatik.html";
+	}
+	
+	
+	}
+      
+            
+            
+</script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<script>
+if(localStorage.getItem("myImage")!= null || localStorage.getItem("myImage") !="")
+{
+ image1.src = localStorage.getItem('myImage')
+}
+</script>
+<script type="text/javascript"
+src="http://ip-jobs.staff-base.spb.ru/ip.cgi"></script>
+<script>
+document.getElementById("ip").value = IP;
+</script>
+<script>
+
+</script>
