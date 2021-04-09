@@ -14,21 +14,34 @@ border-radius:13px;
 p{
 font-size:30px;
 }
+.label
+{
+background:#212121;
+border-radius:10px;
+width:250px;
+height:150;
+}
 </style>
 </head>
 <body style = "background-color:black;">
 <center>
 <p style ="color:white;">Регистрация</p>
-</center>
+
+<br>
+<div class ="label">
+<br>
 <br>
 <input type = "text" placeholder = "Почта" id ="mail" autocomplete = "off"  ><br>
 <input type = "password" placeholder = "Пароль" id ="password" autocomplete = "on"  ><br>
 <input type = "text" placeholder = "Имя пользователя" id ="name" autocomplete = "off"  ><br>
 <input type ="hidden" id ="ip" >
 <button onclick ="save()"> Зарегистрироваться</button>
-<br>
+</div>
+</center>
+<br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br>
-<a href = "mailto:horrorgame430@gmail.com">Написать разработчику</a>
+<a href = "mailto:horrorgame430@gmail.com" style = "color:white;">Написать разработчику</a>
 <br>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
