@@ -1,0 +1,65 @@
+
+<html>
+<head>
+
+<title>
+ Выберите друга для репоста
+ </title>
+ <style>
+ .text {
+ color:white;
+ }
+ #list
+ {
+ background:#1f3a3d;
+border-radius:10px;
+color:white;
+width:232px;
+height:250px;
+overflow:auto;
+ }
+ </style>
+ </head>
+ <body style = "background:black;"><script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<script>
+console.log("снизу отмечен список ваших друзей👇");
+</script>
+<div id = "list" >
+ <script>
+  firebase.database().ref(localStorage.getItem("username")+ " " + "friends").on("child_added", function (snapshot) {
+  console.log (snapshot.val().friend_name);
+  friend = "";
+  friend = "<p class = 'text' onclick = 'reposting(this);'repost-id ='"+snapshot.key+"'id ='"+snapshot.val().friend_name+"'>" + snapshot.val().friend_name + "</p><br>";
+  
+ 
+  document.getElementById("list").innerHTML = friend;
+  });
+ </script>
+ <script>
+ function reposting(v)
+ {
+ var repost_id = v.getAttribute("id");
+ firebase.database().ref(localStorage.getItem("username") + " " + "notification").push().set({
+ "name": "Бот-уведомление",
+ "text": "уведомление успешно отправлено",
+ });
+ firebase.database().ref(repost_id + " " + "notification").push().set({
+ "name":"Бот-уведомление",
+ "text":localStorage.getItem("username") + " " + "Прислал вам запись:"+localStorage.getItem("repost")
+ });
+ notif();
+ }
+ function notif()
+ {
+ document.location.href= "chatik.html";
+}
+ </script>
+ 
+ </div>
+ </body>

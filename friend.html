@@ -1,0 +1,55 @@
+<html>
+<head>
+
+<title>
+Друзья
+</title>
+<style>
+.list{
+background:#4c5866;
+border-radius:14px;
+padding:5px;
+margin:10px;
+width:150px;
+height:190px;
+overflow:auto;
+}
+</style>
+</head>
+<body style ="background:black;"><script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<a style = "color:white;"href = "chatik.html">Назад</a>
+<center>
+<h3 style = "color:white;">Ваши друзья </h3>
+<br>
+<div id ="body">
+<script>
+firebase.database().ref(localStorage.getItem("username")+ " " + "friends").on("child_added", function (snapshot) {
+var list = "";
+list+="<div class = 'list'><p style = 'color:blue;'>"+ snapshot.val().friend_name+"</p><br> <button user_name ='"+snapshot.val().friend_name+"'data =  '"+ snapshot.key+"' onclick='deleteFriend(this);'style ='border-radius:10px;'id = '"+ snapshot.val().friend_name + "'> удалить из друзей</button>" +"</div>";
+list+= 
+document.getElementById("body").innerHTML = list;
+});
+</script>
+</div>
+
+</center>
+<script>
+function deleteFriend(removed)
+{
+var id = removed.getAttribute ("data");
+var name = removed.getAttribute("id");
+ firebase.database().ref(localStorage.getItem("username")+ " " + "friends").child(id).remove();
+}
+firebase.database().ref(localStorage.getItem("username")+ " " + "friends").on("child_removed", function (snapshot) {
+     document.location.href = "friend.html";
+    document.getElementById(name).innerHTML = "Друг удален";
+});
+</script>
+
+</body>

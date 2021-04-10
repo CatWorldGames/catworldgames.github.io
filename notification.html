@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>
+Уведомления
+</title>
+<style>
+#lists
+{
+
+width:200px;
+height:190px;
+overflow:auto;
+border:1px solid white;
+}
+td{
+color:white;
+}
+</style>
+</head>
+<body style ="background:black;">
+<a style ="color:white;" href = "chatik.html">Назад</a>
+<center>
+<h4 style="color:white;">Уведомления</h4>
+</center>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<div style = "background:#1a153fwidth:200px;height:100px;" id ="lists">
+
+<script>
+firebase.database().ref(localStorage.getItem("username")+ " " + "notification").on("child_added", function (snapshot) {
+var table = "";
+table +="<font color ='blue'><td  notif_key='"+snapshot.key+"'>"  + snapshot.val().name + "</font><br> <p style ='color:white;'>"+snapshot.val().text+"</p> </td><br>";
+document.getElementById("lists").innerHTML = table;
+});
+</script>
+</div>
+</body>

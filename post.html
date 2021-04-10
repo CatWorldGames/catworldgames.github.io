@@ -1,0 +1,62 @@
+<html lang = "ru"> 
+<head>
+<script>
+document.title = localStorage.getItem("username") + ":пост" 
+</script>
+<style>
+.post_input::placeholder
+{
+color:white;
+}
+.post_input
+{
+color:yellow;
+border:1px solid gray;
+border-radius:10px;
+background:#212121;
+width:100%;
+height:10%;
+}
+.label{
+background:#1f3a3d;
+border-radius:10px;
+color:white;
+width:232px;
+}
+.photo_repost
+{
+width:30px;
+height:30px;
+}
+</style>
+</head>
+<body style = "background:black;">
+<textarea class = "post_input" placeholder= "please write post" id = "Post">
+</textarea>
+<br>
+<button style = "background:white;border-radius:13px; height:40px;" onclick = "PostPublish()" id = "button">Опубликовать</button>
+<script>
+function PostPublish()
+{
+document.getElementById("button").style.display="none";
+var name = localStorage.getItem("username") 
+var text  = document.getElementById("Post").value;
+
+var post = document.createElement("div");
+post.className  ="label";
+post.innerHTML = name + ":" + text + "<br>";
+post.id = "post_id";
+ document.body.append(post);
+ var repost = document.createElement('img');
+
+ repost.src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-CVhcEzZoJEmHx.png?alt=media&token=c12cd8f3-321e-49b4-8573-da3f947d628c";
+ repost.className = "photo_repost";
+repost.onclick = function () {
+localStorage.setItem("repost", text);
+   document.location.href = "repost.html";
+};
+ document.getElementById("post_id").append(repost);
+}
+</script>
+<br>
+<p style = "color:white;">ВНИМАНИЕ!!!<br> все ваши посты,которые находятся на данной странице нигде не хранятся и не сохраняются до тех пор,пока вы не сделаете репост поста,при обновлении страницы ваши записи обнуляются!!!!! </p>
