@@ -33,7 +33,7 @@ firebase.database().ref(localStorage.getItem("username")+ " " + "friends").on("c
 var list = "";
 list+="<div class = 'list'><p style = 'color:blue;'>"+ snapshot.val().friend_name+"</p><br> <button user_name ='"+snapshot.val().friend_name+"'data =  '"+ snapshot.key+"' onclick='deleteFriend(this);'style ='border-radius:10px;'id = '"+ snapshot.val().friend_name + "'> удалить из друзей</button>" +"</div>";
 list+= 
-document.getElementById("body").innerHTML = list;
+document.getElementById("body").innerHTML += list;
 });
 </script>
 </div>

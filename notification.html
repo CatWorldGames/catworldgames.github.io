@@ -33,10 +33,12 @@ color:white;
 
 <script>
 firebase.database().ref(localStorage.getItem("username")+ " " + "notification").on("child_added", function (snapshot) {
+console.log(snapshot.val().name + ":" +snapshot.val().text);
 var table = "";
-table += "<font color ='blue'><h4  notif_key='"+snapshot.key+"'>"  + snapshot.val().name + "</font><br> <p style ='color:white;'>"+snapshot.val().text+"</p> </h4><br>";
-document.getElementById("lists").innerHTML = table;
+table += "<font color ='blue'><h4>"  + snapshot.val().name + "</font><br> <p style ='color:white;'>"+snapshot.val().text+"</p> </h4><br>";
+document.getElementById("lists").innerHTML += table;
 });
+
 </script>
 </div>
 </body>

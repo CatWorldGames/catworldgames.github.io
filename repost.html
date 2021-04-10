@@ -38,7 +38,7 @@ console.log("снизу отмечен список ваших друзей👇"
   friend = "<p class = 'text' onclick = 'reposting(this);'repost-id ='"+snapshot.key+"'id ='"+snapshot.val().friend_name+"'>" + snapshot.val().friend_name + "</p><br>";
   
  
-  document.getElementById("list").innerHTML = friend;
+  document.getElementById("list").innerHTML += friend;
   });
  </script>
  <script>
