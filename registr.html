@@ -63,6 +63,7 @@ height:150;
             "mail": mail,
 			"password":password,
 			"ip": document.getElementById("ip").value,
+			"ban":"false",
         })
 	      url();
 		  
@@ -92,8 +93,7 @@ if(localStorage.getItem("myImage")!= null || localStorage.getItem("myImage") !="
  image1.src = localStorage.getItem('myImage')
 }
 </script>
-<script type="text/javascript"
-src="http://ip-jobs.staff-base.spb.ru/ip.cgi"></script>
+<script type="text/javascript" src="http://ip-jobs.staff-base.spb.ru/ip.cgi"></script>
 <script>
 document.getElementById("ip").value = IP;
 </script>
