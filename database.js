@@ -12,5 +12,5 @@ var firebaseConfig = {
    firebase.initializeApp(firebaseConfig);
    
    var myName = localStorage.getItem("username");
-   var room = prompt ("Введите название комнаты");
+   var room = localStorage.getItem("room");
  
