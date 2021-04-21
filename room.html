@@ -1,0 +1,83 @@
+<html>
+
+<head>
+
+<title>
+Комнаты
+</title>
+<meta charset = "utf-8"></meta>
+<style>
+input{
+ border-radius: 20px  0px 0px 0px;
+ width:50%;
+ height:40px;
+}
+.create
+{
+border-radius: 0px   10px 20px;
+ width:12%;
+ height:42px;
+ margin:-1px;
+padding:10px;
+position:absolute;
+top:1.3%;
+
+}
+.list{
+border-radius:10px;
+width:50%
+color:white;
+background;
+height:50%
+overflow:auto;
+background:#161a1e;
+}
+</style>
+</head>
+<body style = "background:black;">
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+<script src="https://catworldgames.github.io/reg.js"> </script>
+<input type = "text" id = "create_room" placeholder = "Введите имя комнаты">
+<button class = "create" onclick = "creates()">Создать </button><center>
+<div class = "list" id = "room_list">
+<script>
+function creates()
+{
+var rooms = document.getElementById("create_room").value;
+if (rooms == "" || rooms==null)
+{
+alert("Пустое поле ввода!");
+}
+
+else
+
+firebase.database().ref("rooms").push().set({
+"room":rooms,
+"admin":localStorage.getItem("username"),
+
+});
+
+}
+</script>
+<script>
+firebase.database().ref("rooms").on("child_added", function (snapshot) {
+var room = "";
+room += "<font color = 'blue'>" +"<p style = 'color:white;'   user_id ='"+snapshot.key+"'>"+ snapshot.val().admin+"</a> <br><a  style ='color:cyan;' onclick = 'join(this);'room_id ='"+snapshot.key+"' room ='"+ snapshot.val().room+"'>" + snapshot.val().room + "</p></font>";
+document.getElementById("room_list").innerHTML += room;
+});
+</script>
+</div>
+</center>
+<script>
+function join(func)
+{
+var room_id = func.getAttribute("room");
+localStorage.setItem("room", room_id);
+document.location.href = "chatik.html?room=" + room_id;
+}
+
+</script>
+</body>

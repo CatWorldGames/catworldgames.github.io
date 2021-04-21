@@ -24,9 +24,9 @@ $(document).keypress(function (e) {
             
     }
 });
+</script>
 
 
- </script>
  <script>
  if(localStorage.getItem("username")==""|| localStorage.getItem("username")== null)
  {
@@ -134,7 +134,15 @@ $(document).keypress(function (e) {
   }
   </style>
   <script>
+  if (localStorage.getItem("room") =="" || localStorage.getItem("room") == null)
+  {
+  document.location.href = "room.html";
+  
+  }
+  else
+  {
   document.getElementById("title").innerHTML = room;
+  }
   </script>
 
 
@@ -143,6 +151,7 @@ $(document).keypress(function (e) {
     function sendMessage() {
 	     
         var message = document.getElementById("message").value;
+		var image = localStorage.getItem("url");
 		var limit = 300;
 		var length = message.length;
 		var lenghts = length - limit;
@@ -197,6 +206,7 @@ $(document).keypress(function (e) {
         
         firebase.database().ref(room).push().set({
             "sender": myName,
+			"url":image,
             "message": message,
 			"rooms":room,
 			"minute":mins,
@@ -204,14 +214,7 @@ $(document).keypress(function (e) {
 			"seconds":secs,
 			"sticker_id":sticker,
         })
-		if (message =="%привет")
-	{
-	SendStickerOne();
-	}
-	if (message =="%я зол")
-	{
-	SendStickerTwo();
-	}	
+			
  document.getElementById("message").value = "";
       console.log (data);
         return false;
@@ -274,6 +277,11 @@ border-radius: 100px;
  border:1px solid white;
  border-radius:18px;
  background-color:white;
+ }
+ #photo{
+ border-radius:100%;
+ border:1px solid black;
+ }
  </style>
 
  
@@ -296,7 +304,7 @@ border-radius: 100px;
 		var length = message.length;
 		var lenghts = length - limit;
 		var nickl = myName.length;
-		
+		var image = localStorage.getItem("url");
 		var resultnick = nickl - limit;
 		var d = new Date();
     var hours = d.getHours();
@@ -324,6 +332,7 @@ border-radius: 100px;
         firebase.database().ref(room).push().set({
             "sender": myName,
             "message": message,
+			"url":image,
 			"rooms":room,
 			"minute":mins,
 			"hours":hours,
@@ -349,6 +358,7 @@ function SendStickerTwo() {
         var message = '<img onclick = "SendStickerTwo()" src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&token=6957c9d8-b82e-4bae-b66f-eb59b60ec374" width = "100" height = "100"> </img>';
 		var limit = 300;
 		var length = message.length;
+		var image = localStorage.getItem("url");
 		var lenghts = length - limit;
 		var nickl = myName.length;
 		
@@ -379,6 +389,7 @@ function SendStickerTwo() {
         firebase.database().ref(room).push().set({
             "sender": myName,
             "message": message,
+			"url":image,
 			"rooms":room,
 			"minute":mins,
 			"hours":hours,
@@ -394,6 +405,7 @@ function SendStickerTwo() {
     }
 </script>
 <div id = "message_list">
+
  <script>
     
     firebase.database().ref(room).on("child_added", function (snapshot) {
@@ -409,9 +421,10 @@ function SendStickerTwo() {
 		if (snapshot.val().sender != myName)
 		{
         html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
-       
+        
         
         html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+		html += "<img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
 				if (snapshot.val().message == "кто я")
@@ -426,7 +439,7 @@ function SendStickerTwo() {
 		{
 		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
        
-        
+        html += "<img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
         html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
@@ -470,6 +483,10 @@ background-color:gray;
 border:1px;
 border radius:20px;
 display:none;
+}
+#down_list
+{
+overflow:auto;
 }
 </style>
 <div class="sticker_label" id="label">
@@ -607,18 +624,30 @@ color:yellow;
  <script>
  function delete_account()
  {
+ 
  localStorage.removeItem("username");
  location.reload();
  }
  </script>
 <ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?guci=2.2.0.0.2.2.0.0&amp;client=ca-pub-7088445945474705&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;lmt=1605947559&amp;plat=1%3A32776%2C2%3A16809992%2C9%3A32776%2C10%3A32%2C11%3A32%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32%2C40%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fcatworldweb.github.io%2Fchatik.html&amp;ea=0&amp;flash=32.0.0&amp;pra=5&amp;wgl=1&amp;tt_state=W3siaXNzdWVyT3JpZ2luIjoiaHR0cHM6Ly9hZHNlcnZpY2UuZ29vZ2xlLmNvbSIsInN0YXRlIjowfSx7Imlzc3Vlck9yaWdpbiI6Imh0dHBzOi8vYXR0ZXN0YXRpb24uYW5kcm9pZC5jb20iLCJzdGF0ZSI6MH1d&amp;dt=1606057129236&amp;bpp=20&amp;bdt=3927&amp;idt=97&amp;shv=r20201112&amp;cbv=r20190131&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;nras=1&amp;correlator=7356424862046&amp;frm=20&amp;pv=2&amp;ga_vid=1990993347.1604661404&amp;ga_sid=1606057129&amp;ga_hid=266397875&amp;ga_fc=1&amp;iag=0&amp;icsg=2795534&amp;dssz=20&amp;mdo=0&amp;mso=0&amp;u_tz=180&amp;u_his=2&amp;u_java=0&amp;u_h=768&amp;u_w=1366&amp;u_ah=728&amp;u_aw=1366&amp;u_cd=24&amp;u_nplug=5&amp;u_nmime=9&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1708&amp;bih=815&amp;scr_x=0&amp;scr_y=0&amp;eid=21065725&amp;oid=3&amp;pvsid=2147908974283544&amp;pem=976&amp;ref=https%3A%2F%2Fcatworldweb.github.io%2F&amp;rx=0&amp;eae=2&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1366%2C0%2C1366%2C728%2C1707%2C815&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=8192&amp;bc=31&amp;ifi=0&amp;uci=a!0&amp;fsb=1&amp;dtd=129" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!0" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_5439771821931" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20201112/r20190131/zrt_lookup.html#" data-ad-client="ca-pub-7088445945474705" style="display: none;"></iframe><iframe id="google_osd_static_frame_1218932347938" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>
-<div style = "background:purple;border-radius:10px;">
+<div style = "background:purple;border-radius:10px;" id = "down_list">
 <p style = "color:white;">Смотрите также:</p>
 <br>
 <a href = "post.html" style = "color:white;">Создание поста</a><br>
 <a href = "friend.html" style = "color:white;">Список друзей</a><br>
 <a href = "notification.html" style = "color:white;">Уведомления</a><br>
 <a href = "mychat.html" style = "color:white;">Переписка с друзьями</a>
+<p style = "color:white;">участники комнаты: </p>
+<script>
+firebase.database().ref(room + " " + "users").on("child_added", function (snapshot) {
+console.log(snapshot.val().url +":" + snapshot.val().user);
+var list = "";
+list += "<br><img id = 'photo' src = '"+snapshot.val().url +"' width = '60' height = '60' alt = '"+snapshot.val().user+"'></img><br>";
+list += "<font color = 'yellow'>" + snapshot.val().user + "</font>";
+document.getElementById("down_list").innerHTML += list;
+});
+
+</script>
 </div>
 
 <script>
@@ -654,4 +683,21 @@ document.getElementById("message_list").style.display="none";
    document.getElementById("message_list").style.display="block";
  }
  });
+</script>
+<script>
+localStorage.setItem(room + "join", "true");
+if (localStorage.setItem(room + "join") =="" || localStorage.setItem(room + "join") == null)
+{
+
+}
+
+else
+{
+
+
+firebase.database().ref(room + " " + "users").push().set({
+"url":localStorage.getItem("url"),
+"user":localStorage.getItem("username"), 
+});
+}
 </script>

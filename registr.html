@@ -4,12 +4,16 @@
 Регистрация на сайте
 </title>
 <style>
+#photo{
+border-radius:100%;
+}
 input::placeholder{
 color:white;
 }
 input{
 background-color:gray;
 border-radius:13px;
+color:white;
 }
 p{
 font-size:30px;
@@ -19,7 +23,7 @@ font-size:30px;
 background:#212121;
 border-radius:10px;
 width:250px;
-height:150;
+height:250;
 }
 </style>
 </head>
@@ -31,6 +35,10 @@ height:150;
 <div class ="label">
 <br>
 <br>
+<input type = "file" onchange='Upload(event)' id = "icon"><br>
+<img id = "photo" width = "100" height = "100"/>
+<br>
+
 <input type = "text" placeholder = "Почта" id ="mail" autocomplete = "off"  ><br>
 <input type = "password" placeholder = "Пароль" id ="password" autocomplete = "on"  ><br>
 <input type = "text" placeholder = "Имя пользователя" id ="name" autocomplete = "off"  ><br>
@@ -43,24 +51,51 @@ height:150;
 <br><br><br><br><br><br>
 <a href = "mailto:horrorgame430@gmail.com" style = "color:white;">Написать разработчику</a>
 <br>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 <script>
-    
+function Upload()
+{ 
+
+const ref = firebase.storage().ref();
+let file = {};
+ file = document.querySelector("#icon").files[0];
+const name = new Date() + '-' + file.name;
+const metadata = {
+contentType:file.type
+
+};
+const task = ref.child(name).put(file,metadata);
+task
+.then(snapshot => snapshot.ref.getDownloadURL())
+
+.then(url => {
+ console.log("Ссылка на изображение:"+url);
+ const image_prof = document.querySelector("#photo");
+ image_prof.src = url;
+
+ });
+}
+</script>
+  <script>  
     function save ()  {
 	
+
 	var name = document.getElementById("name").value;
 	var password =  document.getElementById("password").value;
+	var image = document.getElementById("photo");
 	 var mail = document.getElementById("mail").value;
 	 localStorage.setItem("username",name);
 	 localStorage.setItem("mail",mail);
 	  localStorage.setItem("password",password);
-	  
+	  localStorage.setItem("url", image.src);
 	  firebase.database().ref(name).push().set({
             "name":name,
             "mail": mail,
+			"url": image.src,
 			"password":password,
 			"ip": document.getElementById("ip").value,
 			"ban":"false",
@@ -71,15 +106,14 @@ height:150;
 		  {
 		  setTimeout(chat,800);
 		  }
-	
+	}
 	
 	function chat()
 	{
-	document.location.href= "chatik.html";
+	document.location.href= "room.html";
 	}
 	
 	
-	}
       
             
             
@@ -87,12 +121,7 @@ height:150;
 <script src = "https://catworldgames.github.io/reg.js">
 
 </script>
-<script>
-if(localStorage.getItem("myImage")!= null || localStorage.getItem("myImage") !="")
-{
- image1.src = localStorage.getItem('myImage')
-}
-</script>
+
 <script type="text/javascript" src="http://ip-jobs.staff-base.spb.ru/ip.cgi"></script>
 <script>
 document.getElementById("ip").value = IP;
