@@ -53,13 +53,14 @@ alert("Пустое поле ввода!");
 }
 
 else
-
+{
+document.getElementById("create_room").value = "";
 firebase.database().ref("rooms").push().set({
 "room":rooms,
 "admin":localStorage.getItem("username"),
 
 });
-
+}
 }
 </script>
 <script>
