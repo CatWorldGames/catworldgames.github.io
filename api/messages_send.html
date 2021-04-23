@@ -12,6 +12,7 @@ display:none;
 <script src = "https://catworldgames.github.io/reg.js">
 
 </script>
+<p id = "json"></p>
  <script>
  var d = new Date();
  var hours = d.getHours();
@@ -40,9 +41,17 @@ firebase.database().ref(params['room']).push().set({
 			"seconds":secs,
 			"sticker_id":"0",
         });
-
-
-// выведет в консоль значение  GET-параметра data
+ var base  = {
+ sender: params['name'],
+			url:"1",
+            message:params['message'],
+			rooms:params['room'],
+			minute:mins,
+			hours:hours,
+			seconds:secs,
+			sticker_id:"0",
+ };
+ document.getElementById("json").innerHTML = JSON.stringify(base);
  </script>
 </body>
 </html>
