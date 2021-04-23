@@ -1,0 +1,48 @@
+<html>
+<body>
+<style>
+div
+{
+display:none;	
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>	
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+ <script>
+ var d = new Date();
+ var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+ var params = window
+    .location
+    .search
+    .replace('?','')
+    .split('&')
+    .reduce(
+        function(p,e){
+            var a = e.split('=');
+            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+            return p;
+        },
+        {}
+    );
+firebase.database().ref(params['room']).push().set({
+"sender": params['name'],
+			"url":"1",
+            "message":params['message'],
+			"rooms":params['room'],
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":"0",
+        });
+
+
+// выведет в консоль значение  GET-параметра data
+ </script>
+</body>
+</html>
