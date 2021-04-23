@@ -10,5 +10,5 @@ var firebaseConfig = {
   };
  
    firebase.initializeApp(firebaseConfig);
-
+    
    var myName = localStorage.getItem("username");
