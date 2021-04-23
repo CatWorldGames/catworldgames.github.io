@@ -1,0 +1,102 @@
+<html>
+
+  <head>
+<style>
+
+
+#photo{
+border-radius:100%;
+}
+input::placeholder{
+color:white;
+}
+input{
+background-color:gray;
+border-radius:13px;
+color:white;
+}
+p{
+font-size:30px;
+}
+.label
+{
+background:#212121;
+border-radius:10px;
+width:250px;
+height:250;
+}
+
+</style>
+    <title>
+
+Вход в систему
+
+         </title>
+		        <body style = "background:black;"> 
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>				
+				      <center>
+					  <div class ="label">
+					  
+					  <font color = "white"><h1> Вход</h1></font><br>
+					  
+					  
+					  <input type = "text" placeholder = "Почта" id ="mail" autocomplete = "off"  ><br>
+                      <input type = "password" placeholder = "Пароль" id ="password" autocomplete = "on"  ><br>
+					  <input type = "text" placeholder = "Зарегистрированное имя" id ="name" autocomplete = "on"  ><br>
+                      <button id ="send"  onclick = "send()"  >Войти</button><br>
+					  
+					  
+					  </div>
+					  </center>
+					  <script>
+					  function send()
+					  {
+					  var mail = document.getElementById("mail");
+					  var password = document.getElementById("password");
+					  var name = document.getElementById("name");
+					  localStorage.setItem("mail2", mail.value);
+					  localStorage.setItem("password2", password.value);
+					   localStorage.setItem("username2", name.value);
+					   url();
+					  }
+					  function url(){
+					  setTimeout(next, 2000);
+					  
+					  }
+					  function next()
+					  
+					  {
+					  location.href = "check.html";
+					  }
+					  </script>
+					 
+
+
+
+
+
+					 
+					  
+					   
+					    
+						 
+						  
+						   
+						    
+							 
+							  
+							   
+							    
+								 
+								  
+								   
+								    
+									 
+									  
+									   
+									    
+										 

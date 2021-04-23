@@ -1,0 +1,38 @@
+<html>
+
+<head>
+
+<title>
+...
+</title>
+<meta charset = "utf-8"></meta>
+
+</head>
+<body>
+Пожалуйста подождите...
+<p  style = "color:red;" id ="error"></p>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>	
+
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+
+
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<script>
+firebase.database().ref(localStorage.getItem("username2")).on("child_added", function (snapshot) {
+if (localStorage.getItem("mail2") == snapshot.val().mail && localStorage.getItem("password2") == snapshot.val().password && localStorage.getItem("username2") == snapshot.val().name  )
+{
+localStorage.setItem("username", snapshot.val().name);
+localStorage.setItem("url", snapshot.val().url);
+document.location.href = "room.html";
+}
+else
+{
+document.getElementById("error").innerHTML = "Данные неверны";
+}
+});
+</script>
+</body>

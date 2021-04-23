@@ -53,6 +53,7 @@ height:250;
 <br>
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
@@ -80,14 +81,24 @@ task
  });
 }
 </script>
+<script>
+if (localStorage.getItem("auth")=="true")
+{
+document.location.href = "login.html";
+}
+</script>
   <script>  
     function save ()  {
 	
-
+   
 	var name = document.getElementById("name").value;
 	var password =  document.getElementById("password").value;
 	var image = document.getElementById("photo");
 	 var mail = document.getElementById("mail").value;
+	 const auth = firebase.auth();
+	 const registration = auth.createUserWithEmailAndPassword(mail,password);
+	 registration.catch(e => alert (e.message));
+	 localStorage.setItem("auth", "true");
 	 localStorage.setItem("username",name);
 	 localStorage.setItem("mail",mail);
 	  localStorage.setItem("password",password);
