@@ -573,13 +573,49 @@ task
 .then(snapshot => snapshot.ref.getDownloadURL())
 
 .then(url => {
+
+
  console.log("Ссылка на изображение:"+url);
- var image_prof = document.createElement("img");
+ var image_prof = document.createElement('img');
  document.getElementById("message").value= "<img src = '"+url+"'width = '300px' height = '300px'></img>";
  image_prof.src = url;
  image_prof.id="card";
  image_prof.width ='100';
  image_prof.height = '100';
+ 
+
+ });
+}
+</script>
+</script>
+<script>
+function UploadVideo()
+{ 
+
+const ref = firebase.storage().ref(localStorage.getItem("room"));
+let file = {};
+ file = document.querySelector("#video").files[0];
+const name = new Date() + '-' + file.name;
+const metadata = {
+contentType:file.type
+
+};
+const task = ref.child(name).put(file,metadata);
+task
+.then(snapshot => snapshot.ref.getDownloadURL())
+
+.then(url => {
+
+
+ console.log("Ссылка на изображение:"+url);
+ var video_prof = document.createElement('img');
+ document.getElementById("message").value= '<video width="400" height="300" controls="controls" poster="'+url+'"> <source src="'+url+'">';
+ video_prof.src = url;
+ video_prof.id="video_id";
+ video_prof.width ='100';
+ video_prof.height = '100';
+ 
+
  });
 }
 </script>
@@ -594,6 +630,10 @@ task
 <label>
 <img class ="file"src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-32rvIzv4P4qNn1.png?alt=media&token=84681d54-2f5a-4be6-b99a-b7b2403fe71b" type = "file" width = "50" height = "50"></img>
 <input type = "file" hidden id = "e" onchange = "Upload(event)">
+</label>
+<label>
+<img class ="file"src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-y4i91miVaZMTzVV.png?alt=media&token=9b281e0c-ad2e-46e7-9b08-3586ac68f537" type = "file" width = "80" height = "80"></img>
+<input type = "file" hidden id = "video" onchange = "UploadVideo(event)">
 </label>
 <img width="50" height="30" id ="open" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-UlB6ldUKSygcHdD.png?alt=media&amp;token=bba0d329-3656-45f9-a592-f97bff7ea674" id="smile_open" class="opn_sml" onclick="(document.getElementById('label').style.display='block')">
  
