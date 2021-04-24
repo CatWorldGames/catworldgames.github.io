@@ -116,7 +116,7 @@ $(document).keypress(function (e) {
 
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 <script src="https://catworldgames.github.io/database.js">
 
@@ -176,7 +176,7 @@ $(document).keypress(function (e) {
 		{
 		var text = "";
 		text += "<font color = 'yellow'>" + "отсутствует ник и текст сообщения или превышены в них количество символов.Превышенно сообщений:" + lenghts + " " + "превышенно символов ника:" + resultnick + "</font>";
-	
+	 
 		}
 		
 		if (room =='гача лайф' || room =='gacha life' || room.indexOf("гача лайф")>-1 )
@@ -187,7 +187,7 @@ $(document).keypress(function (e) {
 		message = "сообщение удалено<br> причина: комната содержит слово гача лайф";
 		
 		}
-		 if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
+		 if (myName != "" && message != "" && myName.length < 300 && message.length < 900  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+")
 	{
 	var base = {
 	 sender: myName,
@@ -201,7 +201,7 @@ $(document).keypress(function (e) {
 	var data = JSON.stringify(base);
 	}
 
-          if (myName != "" && message != "" && myName.length < 300 && message.length < 300  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+"  )
+          if (myName != "" && message != "" && myName.length < 300 && message.length < 900  && room != 'гача лайф' && room!= 'gacha life'	&& room !=	"гача лайф 18+"  )
 	{
         
         firebase.database().ref(room).push().set({
@@ -534,8 +534,55 @@ background-color: #1e1424;
 width = 150px;
 height = 150px;
 }
-
+.file{
+margin:0px;
+}
 </style>
+<script>
+var height = 15;
+var attempt = 900;
+var intS = 0;
+function scrollToEndPage() {
+
+
+if (height < document.body.scrollHeight)
+{
+    
+    window.scrollTo(0, height);
+    attempt++;
+    height = parseInt(height) + attempt;
+}
+
+}
+intS = setInterval(scrollToEndPage,100)
+</script>
+<script>
+function Upload()
+{ 
+
+const ref = firebase.storage().ref(localStorage.getItem("room"));
+let file = {};
+ file = document.querySelector("#e").files[0];
+const name = new Date() + '-' + file.name;
+const metadata = {
+contentType:file.type
+
+};
+const task = ref.child(name).put(file,metadata);
+task
+.then(snapshot => snapshot.ref.getDownloadURL())
+
+.then(url => {
+ console.log("Ссылка на изображение:"+url);
+ var image_prof = document.createElement("img");
+ document.getElementById("message").value= "<img src = '"+url+"'width = '300px' height = '300px'></img>";
+ image_prof.src = url;
+ image_prof.id="card";
+ image_prof.width ='100';
+ image_prof.height = '100';
+ });
+}
+</script>
 <div id = "follow">
 <center>
 <button onclick="fon()" class="send">Код для установки своего фона</button>
@@ -543,9 +590,13 @@ height = 150px;
 <button onclick="kapets()" class="send">код для ссылки</button>
 
 <form>
-<textarea id="message" placeholder="Введите сообщение" autocomplete="off" class="displaymessage"></textarea>
+<textarea id="message" placeholder="Введите сообщение" autocomplete="off" class="displaymessage"></textarea><input type="button" class="senders" ,id="send" onclick="return sendMessage();" width="500" height="100" value="отправить">
+<label>
+<img class ="file"src = "https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-32rvIzv4P4qNn1.png?alt=media&token=84681d54-2f5a-4be6-b99a-b7b2403fe71b" type = "file" width = "50" height = "50"></img>
+<input type = "file" hidden id = "e" onchange = "Upload(event)">
+</label>
 <img width="50" height="30" id ="open" src="https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/imgonline-com-ua-Transparent-backgr-UlB6ldUKSygcHdD.png?alt=media&amp;token=bba0d329-3656-45f9-a592-f97bff7ea674" id="smile_open" class="opn_sml" onclick="(document.getElementById('label').style.display='block')">
- <input type="button" class="senders" ,id="send" onclick="return sendMessage();" width="500" height="100" value="отправить">
+ 
  </form></center></div><h3 class = "banned" id = "ban">Увы,но вы были забанены по усмотрению администратора,если вас забанили ошибочно,то напишите администратору по <a style = "color:yellow;" href ="mailto:horrorgame430@gmail.com">почте</a></h3>
 <style>
 .banned
