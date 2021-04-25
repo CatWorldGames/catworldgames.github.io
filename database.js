@@ -3,8 +3,7 @@ var firebaseConfig = {
     authDomain: "vkotomire.firebaseapp.com",
     databaseURL: "https://vkotomire.firebaseio.com",
     projectId: "vkotomire",
-    storageBucket: "vkotomire.appspot.com",
-    messagingSenderId: "710516320047",
+    storageBucket: "video-2e5ed.appspot.com"
     appId: "1:710516320047:web:1966bb2619557c8f8ea3da",
     measurementId: "G-GMWKZJ69G7"
   };
