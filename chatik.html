@@ -424,13 +424,13 @@ function SendStickerTwo() {
         html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
         
         
-		
+		html+="<p onclick = 'Repost(this);'><img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
 		html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
 		
 		
         html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
 		
-		html += "<img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
+		
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
 				if (snapshot.val().message == "кто я")
