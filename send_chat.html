@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<title>
+пересылка сообщения
+</title>
+<style>
+.list::-webkit-scrollbar-button {
+background-image:url(https://firebasestorage.googleapis.com/v0/b/vkotomire.appspot.com/o/0-0-4.png?alt=media&token=6957c9d8-b82e-4bae-b66f-eb59b60ec374);
+background-repeat:no-repeat;
+width:6px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color:#32312e;
+box-shadow:0px 0px 3px #000 inset;
+}
+.list{
+background:#000029;
+width:300px;
+height:250px;
+overflow:auto;
+border-radius:15px;
+}
+.click
+{
+border-radius:10px;
+}
+.click:hover
+{
+background:#0a4761;
+}
+textarea
+{
+border-radius:10px;
+border:1px solid black;
+}
+</style>
+</head>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>	
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+<body style = "background:black;">
+<center>
+<div class = "list" id ="listview">
+<font color = "white">Выберите комнату</font>
+<script>
+firebase.database().ref("rooms").on("child_added", function(rooms){
+var p = "";
+
+p+= "<div class ='click'><hr><br><font color = 'white'><p room='"+rooms.val().room+"' onclick = 'send(this);'text = '"+localStorage.getItem("repost_message")+"'>"+rooms.val().room+"</p></font><br><hr></div>";
+document.getElementById("listview").innerHTML += p;
+});
+</script>
+</div>
+<br>
+
+<textarea placeholder="Введите сообщение" id = "message" ></textarea>
+<script>
+function send(repost)
+{
+var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+var sends = repost.getAttribute("text");
+var object = repost.getAttribute("room");
+localStorage.setItem("room",object);
+firebase.database().ref(object).push().set({
+"sender": localStorage.getItem("username"),
+            "message": "<td><br>"+sends+"<hr></td><br><style>td{width:auto;}</style>" + document.getElementById("message").value,
+			"url":localStorage.getItem("url"),
+			"rooms":object,
+			"minute":mins,
+			"hours":hours,
+			"seconds":secs,
+			"sticker_id":"0",
+
+});
+document.location.href="chatik.html";
+}
+
+
+</script>
+</center>
+</body>
