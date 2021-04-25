@@ -21,7 +21,7 @@ $(document).keypress(function (e) {
     if (e.which == 13) {
             sendMessage();
             document.getElementById("message").value = "";
-            
+             document.getElementById("message").value = "";
     }
 });
 </script>
@@ -151,6 +151,7 @@ $(document).keypress(function (e) {
     function sendMessage() {
 	     
         var message = document.getElementById("message").value;
+		var url = document.getElementById("message").value
 		var image = localStorage.getItem("url");
 		var limit = 300;
 		var length = message.length;
@@ -164,7 +165,7 @@ $(document).keypress(function (e) {
     var secs = d.getSeconds();
 	
 
-
+       
 	    if (hours > 0 && hours < 5 )
 		{
 		var close = "";
@@ -412,7 +413,7 @@ function SendStickerTwo() {
 	document.title = "(уведомление)Сообщение отправил:" + snapshot.val().sender;
 	     var money = 0;
 		 
-       
+		
 	
 
         var html = "";
@@ -423,7 +424,12 @@ function SendStickerTwo() {
         html += "<p><li id='message-" + snapshot.key + "' class= 'canvaschat'>";
         
         
+		
+		html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+		
+		
         html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+		
 		html += "<img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
@@ -437,23 +443,29 @@ function SendStickerTwo() {
 		}
 		if (snapshot.val().sender == myName)
 		{
-		html += "<p><li id='message-" + snapshot.key + "' class= 'you'>";
+		html += "<p><li id='message-" + snapshot.key + "' class= 'you' '>";
        
-        html += "<img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
-        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        html += "<p onclick = 'Repost(this);'><img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
+        html += snapshot.val().sender + ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds+"</p>" ;
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
 		}
 		if (snapshot.val().sender != myName || myName =="кодер сишарпов") {
              html += "<p><button data-id='" + snapshot.val().sender+ "' onclick='add_friends(this);' class = 'send'>";
                 html += "Добавить в друзья";
             html += "</p></button><br>";
+			 html += "<p><button data-id='" + snapshot.val().message+ "' onclick='Repost(this);' class = 'send'>";
+                html += "Переслать сообщение";
+            html += "</p></button><br>";
 			}
+			
 		
  if (snapshot.val().sender == myName || myName =="кодер сишарпов") {
              
             html += "<p><button data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class = 'send'>";
                 html += "Удалить сообщение";
             html += "</p></button>";
+			  html += "</p></button><br>";
+			   
         }
           let audio = new Audio('https://catworldweb.github.io/audios.getkeep/u_edomlenie-9.mp3');
 audio.play();
@@ -463,7 +475,16 @@ audio.play();
    });
 	
 </script>
+
 </div>
+<script>
+function Repost(message)
+{
+var message_text = message.innerHTML;
+localStorage.setItem("repost_message", message_text);
+document.location.href = "send_chat.html";
+}
+</script>
 <script>
 function add_friends(snapshot)
 {
