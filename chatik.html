@@ -425,10 +425,10 @@ function SendStickerTwo() {
         
         
 		html+="<p onclick = 'Repost(this);'><img id = 'photo' src = '"+snapshot.val().url +"' width = '100' height = '100' alt = '"+snapshot.val().sender+"'></img><br>";
-		html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+		html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds +"</p>" ;
 		
 		
-        html += "<p onclick = 'add_friends(this);' >"+snapshot.val().sender +"</p>"+ ": " + snapshot.val().message + " " + snapshot.val().hours+":"+snapshot.val().minute+":"+snapshot.val().seconds ;
+        
 		
 		
         html += "</p></li><br><a href = 'https://vk.com/topic-192963872_46699128' class = 'complaint'>пожаловаться на сообщение</a>";
@@ -597,6 +597,7 @@ task
 
 
  console.log("Ссылка на изображение:"+url);
+ 
  var image_prof = document.createElement('img');
  document.getElementById("message").value= "<img src = '"+url+"'width = '300px' height = '300px'></img>";
  image_prof.src = url;
@@ -629,7 +630,7 @@ task
 
 
  console.log("Ссылка на изображение:"+url);
- var video_prof = document.createElement('img');
+
  document.getElementById("message").value= '<video width="400" height="300" controls="controls" poster="'+url+'"> <source src="'+url+'">';
  video_prof.src = url;
  video_prof.id="video_id";
@@ -746,6 +747,12 @@ color:yellow;
 <div style = "background:purple;border-radius:10px;" id = "down_list">
 <p style = "color:white;">Смотрите также:</p>
 <br>
+<input type = "text" id  ="url" style = "width:1500px;" disabled><br>
+
+<script>
+document.getElementById("url").value = "https://catworldgames.github.io/away.html?url=https://catworldgames.github.io/invite-chat.html?invite_room="+room;
+
+</script>
 <a href = "post.html" style = "color:white;">Создание поста</a><br>
 <a href = "friend.html" style = "color:white;">Список друзей</a><br>
 <a href = "notification.html" style = "color:white;">Уведомления</a><br>
@@ -798,19 +805,29 @@ document.getElementById("message_list").style.display="none";
  });
 </script>
 <script>
-localStorage.setItem(room + "join", "true");
-if (localStorage.setItem(room + "join") =="" || localStorage.setItem(room + "join") == null)
+
+if (localStorage.getItem(room + "join") =="" || localStorage.getItem(room + "join") == null)
 {
 
 }
 
 else
 {
+if(localStorage.getItem(room + "join") == "true")
+{
 
-
+}
+else{
 firebase.database().ref(room + " " + "users").push().set({
 "url":localStorage.getItem("url"),
-"user":localStorage.getItem("username"), 
+"user":localStorage.getItem("username"),
 });
+localStorage.setItem(room + "join", "true");
 }
+}
+
+</script>
+
+<script>
+
 </script>

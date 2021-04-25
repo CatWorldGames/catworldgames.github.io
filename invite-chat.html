@@ -1,0 +1,67 @@
+<html>
+
+<head>
+
+<style>
+.body{
+background:#331d38;
+width:200px;
+border-radius:10px;
+}
+p
+{
+color:white;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>	
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+<script src = "https://catworldgames.github.io/reg.js">
+
+</script>
+</head>
+<body style ="background:black;">
+<center>
+<div class = "body">
+<font color = "white"> вас пригласили в комнату:</font><p id ="room"></p> 
+<br>
+<button style = "background:green; color:white;border:1px solid green; border-radius:10px;" onclick = "join()" >+ присоединиться</button>
+</div>
+</center>
+<script>
+var params = window
+    .location
+    .search
+    .replace('?','')
+    .split('&')
+    .reduce(
+        function(p,e){
+            var a = e.split('=');
+            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+            return p;
+        },
+        {}
+    );
+	document.getElementById("room").innerHTML=params['invite_room'];
+	document.title = "приглашение в" + " " + params['invite_room'];
+	
+	
+	
+	function join()
+	{
+	
+	
+	
+	localStorage.setItem("room",params['invite_room']);
+	document.location.href = "chatik.html";
+
+	
+
+	}
+</script>
+<script>
+
+</script>
+
+
+</body>
