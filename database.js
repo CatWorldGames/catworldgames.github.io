@@ -1,14 +1,15 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCIYuUoD0MNpvJHODMSp76JEJRG_pm1egg",
-    authDomain: "vkotomire.firebaseapp.com",
-    databaseURL: "https://vkotomire.firebaseio.com",
-    projectId: "vkotomire",
-    storageBucket: "video-2e5ed.appspot.com"
-    appId: "1:710516320047:web:1966bb2619557c8f8ea3da",
-    measurementId: "G-GMWKZJ69G7"
+    apiKey: "AIzaSyDQwrbo-8Y0SBlrEdS1mDjT7__g3PM22K0",
+    authDomain: "video-2e5ed.firebaseapp.com",
+    projectId: "video-2e5ed",
+    storageBucket: "video-2e5ed.appspot.com",
+    messagingSenderId: "934401381863",
+    appId: "1:934401381863:web:d160381c75cddd6bd3d942",
+    measurementId: "G-0WLXJQ4511"
   };
- 
-   firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
    
    var myName = localStorage.getItem("username");
    var room = localStorage.getItem("room");
